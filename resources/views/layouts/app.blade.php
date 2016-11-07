@@ -8,17 +8,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BCM') }}</title>
 
-    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/bootstrap.min.css') }}">
+    
+    <!-- Styles 
     <link href="/css/app.css" rel="stylesheet">
-
+-->
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+     <script src="{{ url('/js/bootstrap.min.js') }}"></script>
+
 </head>
 <body>
     <div id="app">
@@ -36,14 +47,73 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'BCM') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                         <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                               Atenciones
+                              <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{url('/clientes')}}">Clientes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atenciones Actuales</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atenciones Cerradas</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atenciones Criticas</a>
+                                </li>
+                                <li>
+                                    <a href="#">Reportes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Gasfiters</a>
+                                </li>
+                              </ul>
+                         </li>
+                         <li class="dropdown">   
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Garantias
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Rendicion</a>
+                                </li>
+                                <li>
+                                    <a href="#">Reparaciones</a>
+                                </li>
+                            </ul>
+                         </li>
+                         <li>
+                            <a href="#">Presupuestos</a>
+                        </li>
+                        <li class="dropdown">      
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repuestos <span class="caret"></span></a>
+                            <ul class="dropdown-menu">                               
+                                <li>
+                                    <a href="#">Solicitar Rptos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Estado Solicitud de Rptos</a>
+                                </li>
+                                <li>
+                                    <a href="#">Lista de Precios</a>
+                                </li>
+                            </ul>
+                         </li>
+
+                        <li>
+                            <a href="#">Sin Repuesto</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -81,7 +151,8 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <!-- Scripts 
+    <script src="/js/app.js"></script>-->
+    
 </body>
 </html>
