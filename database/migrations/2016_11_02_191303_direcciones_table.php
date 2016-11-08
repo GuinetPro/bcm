@@ -18,6 +18,7 @@ class DireccionesTable extends Migration
             $table->string('calle');
             $table->integer('numero');
             $table->integer('departamento');
+            $table->string('telefono');
             $table->string('latitud');
             $table->string('longitud');
             $table->text('comentario');

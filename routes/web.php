@@ -15,6 +15,16 @@
 Route::resource('clientes','ClienteController');
 
 
+Route::resource('regiones','RegionesController',[
+	'only'=>'index'
+] );
+
+
+Route::resource('comunas','ComunasController',[
+	'only'=>['index','show']
+] );
+
+
 Route::get('/', function () {
     return view('welcome');
 });

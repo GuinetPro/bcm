@@ -16,6 +16,7 @@ class TelefonosTable extends Migration
         Schema::create('telefonos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('numero');
+            $table->string('comentario');
             $table->boolean('principal');
             $table->integer('cliente_id')->unsigned();
             $table->foreign("cliente_id")->references("id")->on("clientes");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Model\Cliente;
+use App\Model\Region;
 
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $cliente = new Cliente;
+        $cliente  = new Cliente;
+        $regiones  =  Region::all();
+
         return view("clientes.create",["cliente" => $cliente]);
     }
 

@@ -21,7 +21,6 @@ class ClientesTable extends Migration
             $table->string('apellidoMaterno');
             $table->string('email')->unique();
             $table->text('comentario');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
