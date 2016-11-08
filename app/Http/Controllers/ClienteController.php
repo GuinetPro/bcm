@@ -41,7 +41,14 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $cliente  = new Cliente;
+        
+        if(  Cliente::saveData($request) ){
+            return redirect("/clientes");
+        }else{
+            return view("clientes.create",["cliente" => $cliente]);
+        }
     }
 
     /**

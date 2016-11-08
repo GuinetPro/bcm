@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'BCM') }}</title>
-
     <link rel="stylesheet" type="text/css" href="{{ url('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/font-awesome.min.css') }}">
     
     <!-- Styles 
     <link href="/css/app.css" rel="stylesheet">
@@ -20,18 +20,15 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+
+        Base =  {!! json_encode(url('/')) !!}
+
     </script>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-
-     <script src="{{ url('/js/bootstrap.min.js') }}"></script>
 
 </head>
-<body>
+<body ng-app="BCMApp">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -153,7 +150,23 @@
     </div>
 
     <!-- Scripts 
-    <script src="/js/app.js"></script>-->
+
     
+    <script src="/js/app.js"></script>-->
+
+    <script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <script src="{{ url('/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ url('/js/angular.min.js') }}"></script>
+
+    <script src="{{ url('/app/app.js') }}"></script>
+
+    <script src="{{ url('/app/factory/Region.js') }}"></script>
+    
+    <script src="{{ url('/app/factory/Comuna.js') }}"></script>
+    
+    <script src="{{ url('/app/controller/clienteController.js') }}"></script>
+
 </body>
 </html>

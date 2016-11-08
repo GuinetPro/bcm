@@ -31,7 +31,7 @@
             <td>{{ $c->created_at }}</td>
             <td> 
               <a class="btn btn-warning" href="{{url('/clientes/'.$c->id.'/edit')}}">
-                Editar
+               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </a>
 
            
