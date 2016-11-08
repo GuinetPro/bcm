@@ -25,6 +25,18 @@ Route::resource('comunas','ComunasController',[
 ] );
 
 
+Route::resource('direcciones','DireccionesController',[
+	'only'=>['show']
+] );
+
+
+
+Route::resource('telefonos','TelefonosController',[
+	'only'=>['show']
+] );
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });

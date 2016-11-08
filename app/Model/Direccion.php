@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use DB; 
+
 
 class Direccion extends Model
 {
@@ -16,4 +18,12 @@ class Direccion extends Model
 
 
     protected $fillable = ['comuna_id','departamento','calle','telefono','numero','cliente_id','comentario','latitud','longitud'];
+
+
+    public static function updateData($response,$id_cliente){
+
+    	$direcciones =  $response->dir;
+
+    	
+    }
 }

@@ -1,4 +1,4 @@
-app.controller("ClienteCtrl",function($scope,$http,$timeout,Region,Comuna){
+app.controller("ClienteCtrl",function($scope,$http,$timeout,Region,Comuna,Direccion,Telefono){
 
 	   $scope.error = false;
 	   $scope.errorMessage ="";
@@ -46,6 +46,27 @@ app.controller("ClienteCtrl",function($scope,$http,$timeout,Region,Comuna){
 		 	$scope.error = false;
 	  	 $scope.errorMessage ="";
 	   }
+
+
+
+		if ($('#cliente_id').length > 0) {
+		  
+		  	var client_id =  $('#cliente_id').val();
+
+		  	Direccion.get(client_id).then(function (data) {
+				 $scope.direcciones = data;
+				 console.log(data);
+			});
+
+
+			Telefono.get(client_id).then(function (data) {
+				$scope.telefonos = data;
+			});
+
+		}
+
+
+
 
 	   Region.all().then(function (data) {
 		   $scope.regiones = data;

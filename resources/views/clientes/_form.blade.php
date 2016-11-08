@@ -46,6 +46,7 @@
               <input type="hidden" name="dir[numero][]" value="<% dir.numero %>">
               <input type="hidden" name="dir[telefono][]" value="<% dir.telefono %>">
               <input type="hidden" name="dir[dpt][]" value="<% dir.dpt %>">
+              <input type="hidden" name="dir[id][]" value="<% dir.id %>">
 
               <span class='btn btn-warning'><i class="fa fa-pencil" aria-hidden="true"></i></span>
               <span  ng-click="deleteDir(dir)" class='btn btn-danger'><i class="fa fa-trash" aria-hidden="true"></i></span>
@@ -72,6 +73,7 @@
             <td>
               <% tel.numero %>
               <input type="hidden" name="tel[numero][]" value="<% tel.numero %>">
+              <input type="hidden" name="tel[id][]" value="<% tel.id %>">
               <input type="hidden" name="tel[desc][]" value="<% tel.desc %>">
               <input type="hidden" name="tel[prin][]" value="<% tel.principal %>"><% tel.principal %>
             </td>

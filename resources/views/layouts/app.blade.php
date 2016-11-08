@@ -166,6 +166,10 @@
     
     <script src="{{ url('/app/factory/Comuna.js') }}"></script>
     
+    <script src="{{ url('/app/factory/Direccion.js') }}"></script>
+    
+    <script src="{{ url('/app/factory/Telefono.js') }}"></script>
+
     <script src="{{ url('/app/controller/clienteController.js') }}"></script>
 
 </body>

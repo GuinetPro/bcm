@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Model\Cliente;
 use App\Model\Region;
+use App\Model\Telefono;
+use App\Model\Direccion;
 
 use Illuminate\Http\Request;
 
@@ -70,7 +72,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view("clientes.edit",["cliente" => $cliente]);
     }
 
     /**
@@ -82,7 +85,24 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente = Cliente::find($id);
+
+        $cliente->nombre          = $request->nombre;
+        $cliente->apellidoPaterno = $request->apellidoPaterno;
+        $cliente->apellidoMaterno = $request->apellidoMaterno;
+        $cliente->rut             = $request->rut;
+        $cliente->email           = $request->email;
+        $cliente->comentario      = $request->comentario;
+
+        //updatemoa cliente
+        if($cliente->save()){
+            
+            Telefono::updateData($request,$id);
+
+            return redirect("/clientes");
+        }else{
+            return view("clientes.edit",["cliente" => $cliente]);
+        }
     }
 
     /**
