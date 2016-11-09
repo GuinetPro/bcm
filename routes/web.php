@@ -14,6 +14,8 @@
 
 Route::resource('clientes','ClienteController');
 
+Route::resource('productos','ProductosController');
+
 
 Route::resource('regiones','RegionesController',[
 	'only'=>'index'
