@@ -87,7 +87,8 @@ class Cliente extends Model
 			} catch(ValidationException $e)
 			{
 			    DB::rollback();
-			    return  $e->getErrors();
+			    return  false;
+
 			} catch(\Exception $e)
 			{
 			    DB::rollback();

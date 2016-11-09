@@ -50,8 +50,6 @@ class Telefono extends Model
 		DB::commit();
 		return true;
 
-    	
-
     }
 
 }

@@ -8,6 +8,8 @@ use App\Model\Direccion;
 
 use Illuminate\Http\Request;
 
+use  App\Http\Requests\ClienteRequest;
+
 class ClienteController extends Controller
 {
     /**
@@ -41,11 +43,11 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
         
         $cliente  = new Cliente;
-        
+        //exit;
         if(  Cliente::saveData($request) ){
             return redirect("/clientes");
         }else{
@@ -98,8 +100,9 @@ class ClienteController extends Controller
         if($cliente->save()){
             
             Telefono::updateData($request,$id);
-
+            Cliente::updateData($request,$id);
             return redirect("/clientes");
+            
         }else{
             return view("clientes.edit",["cliente" => $cliente]);
         }
