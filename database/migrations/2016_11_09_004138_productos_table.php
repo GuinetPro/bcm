@@ -18,6 +18,7 @@ class ProductosTable extends Migration
             $table->string('nombre');
             $table->float('precio');
             $table->string('codigo');
+            $table->string('imagen');
 
 
             $table->integer('categoria_id')->unsigned();

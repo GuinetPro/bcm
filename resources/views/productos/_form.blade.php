@@ -1,7 +1,9 @@
 @include('partials._error',[])
 
 
-{!! Form::open(['url' => $url, 'method' => $method ]) !!}
+{!! Form::open(['url' => $url, 'method' => $method , 'files' => true, 'enctype' => 'multipart/form-data' ]) !!}
+
+
 
   <div class="form-group">
     <label for="nombre">Nombre</label>
@@ -47,6 +49,14 @@
     <label for="nombre">Litraje</label>
   	{!! Form::select('litraje_id', $litrajeList, $producto->litraje_id, ['class' => 'form-control']) !!}
   </div>
+
+  <div class="form-group">
+    <label for="nombre">Imagen</label>
+    {!! Form::file('imagen', array('class' => 'form-control')) !!}
+  </div>
+
+
+
 
 
   <div class="form-group text-right">

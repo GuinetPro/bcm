@@ -11,6 +11,7 @@ use App\Model\Litraje;
 use App\Model\Modelo;
 use App\Model\Marca;
 use  App\Http\Requests\ProductoRequest;
+use Image;
 
 class ProductosController extends Controller
 {
@@ -61,7 +62,46 @@ class ProductosController extends Controller
      */
     public function store(ProductoRequest $request)
     {
-        //
+        
+        $producto   = new Producto;
+
+        $producto->nombre       = $request->nombre;
+        $producto->precio       = $request->precio;
+        $producto->codigo       = $request->codigo;
+        $producto->categoria_id = $request->categoria_id;
+        $producto->marca_id     = $request->marca_id;
+        $producto->modelo_id    = $request->modelo_id;
+        $producto->tipo_gas_id  = $request->tipo_gas_id;
+        $producto->tiro_id      = $request->tiro_id;
+        $producto->litraje_id   = $request->litraje_id;
+
+
+        $image = $request->file('imagen');
+
+        if( $image != null ){
+
+
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+         
+            $destinationPath = public_path('/thumbnail');
+            $img = Image::make($image->getRealPath());
+
+
+            /*$img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);*/
+
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['imagename']);
+
+            $producto->imagen =  $input['imagename'];
+        }
+
+        if($product->save()){
+            return redirect("productos");
+        }else{
+            return view("productos.create",["product" => $product]);
+        }
     }
 
     /**
