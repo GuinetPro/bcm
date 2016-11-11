@@ -49,6 +49,7 @@ class ClienteController extends Controller
         $cliente  = new Cliente;
         //exit;
         if(  Cliente::saveData($request) ){
+             \Flash::success('Cliente Creado con Exito.');
             return redirect("/clientes");
         }else{
             return view("clientes.create",["cliente" => $cliente]);
@@ -101,6 +102,7 @@ class ClienteController extends Controller
             
             Telefono::updateData($request,$id);
             Cliente::updateData($request,$id);
+            \Flash::success('Cliente Editado con Exito.');
             return redirect("/clientes");
             
         }else{

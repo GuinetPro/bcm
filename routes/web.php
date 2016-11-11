@@ -46,3 +46,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::get('/imagenes/{img}',function($img){
+	//echo "images/$img";
+    return \Image::make(public_path("/images/$img"))->resize(200, 200)->response('jpg');
+});

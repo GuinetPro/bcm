@@ -3,11 +3,20 @@
 
 {!! Form::open(['url' => $url, 'method' => $method , 'files' => true, 'enctype' => 'multipart/form-data' ]) !!}
 
-
-
   <div class="form-group">
     <label for="nombre">Nombre</label>
     {{ Form::text('nombre',$producto->nombre,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Nombre...'])  }}
+  </div>
+  
+
+  <div class="form-group">
+    <label for="nombre">Lugar Compra</label>
+    {{ Form::text('lugar_compra',$producto->lugar_compra,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Lugar compra...'])  }}
+  </div>
+  
+    <div class="form-group">
+    <label for="nombre">Fecha Compra</label>
+    {{ Form::text('fecha_compra',$producto->fecha_compra,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Fecha'])  }}
   </div>
   
   <div class="form-group">
@@ -55,6 +64,13 @@
     {!! Form::file('imagen', array('class' => 'form-control')) !!}
   </div>
 
+
+<div class="form-group">
+   @if  ( $producto->imagen != "" )
+    <img src="{{ url('imagenes', [$producto->imagen])  }}">
+   @endif 
+
+  </div>
 
 
 

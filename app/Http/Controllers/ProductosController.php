@@ -74,6 +74,8 @@ class ProductosController extends Controller
         $producto->tipo_gas_id  = $request->tipo_gas_id;
         $producto->tiro_id      = $request->tiro_id;
         $producto->litraje_id   = $request->litraje_id;
+        $producto->lugar_compra = $request->lugar_compra;
+        $producto->fecha_compra = $request->fecha_compra;
 
 
         $image = $request->file('imagen');
@@ -83,11 +85,11 @@ class ProductosController extends Controller
 
             $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
          
-            $destinationPath = public_path('/thumbnail');
+            /*$destinationPath = public_path('/thumbnail');
             $img = Image::make($image->getRealPath());
 
 
-            /*$img->resize(100, 100, function ($constraint) {
+            $img->resize(100, 100, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename']);*/
 
@@ -97,10 +99,11 @@ class ProductosController extends Controller
             $producto->imagen =  $input['imagename'];
         }
 
-        if($product->save()){
+        if($producto->save()){
+            \Flash::success('Producto Creado con Exito.'); //<--FLASH MESSAGE
             return redirect("productos");
         }else{
-            return view("productos.create",["product" => $product]);
+            return view("productos.create",["producto" => $producto]);
         }
     }
 
@@ -123,7 +126,24 @@ class ProductosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto   = Producto::find($id);
+        $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
+        $tipo_gas   = TipoGas::pluck('nombre', 'id')->prepend('Selecciona una TipoGas','');
+        $tiro       = Tiro::pluck('nombre', 'id')->prepend('Selecciona una Tiro','');
+        $litraje    = Litraje::pluck('nombre', 'id')->prepend('Selecciona una Litraje','');
+        $modelo     = Modelo::pluck('nombre', 'id')->prepend('Selecciona una Modelo','');
+        $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
+
+        return view("productos.edit",[
+                                        "producto"      => $producto,
+                                        "categoriaList" => $categorias,
+                                        "marcaList"     => $marca,
+                                        "modeloList"    => $modelo,
+                                        "tipo_gasList"  => $tipo_gas,
+                                        "tiroList"      => $tiro,
+                                        "litrajeList"   => $litraje 
+
+                                        ]);
     }
 
     /**
@@ -135,7 +155,51 @@ class ProductosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+ 
+        $producto   = Producto::find($id);
+
+        $producto->nombre       = $request->nombre;
+        $producto->precio       = $request->precio;
+        $producto->codigo       = $request->codigo;
+        $producto->categoria_id = $request->categoria_id;
+        $producto->marca_id     = $request->marca_id;
+        $producto->modelo_id    = $request->modelo_id;
+        $producto->tipo_gas_id  = $request->tipo_gas_id;
+        $producto->tiro_id      = $request->tiro_id;
+        $producto->litraje_id   = $request->litraje_id;
+        $producto->lugar_compra = $request->lugar_compra;
+        $producto->fecha_compra = $request->fecha_compra;
+
+
+        $image = $request->file('imagen');
+
+        if( $image != null ){
+
+            $pathToImage = public_path('images/').$producto->imagen;
+            \File::delete($pathToImage);
+
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $input['imagename']);
+
+            $producto->imagen =  $input['imagename'];
+        }
+
+
+
+           
+
+
+        if($producto->save()){
+
+            \Flash::success('Producto Editado con Exito.'); //<--FLASH MESSAGE
+
+            return redirect("productos");
+        
+        }else{
+            return view("productos.edit",["producto" => $producto]);
+        }
     }
 
     /**
@@ -148,4 +212,6 @@ class ProductosController extends Controller
     {
         //
     }
+
+
 }
