@@ -9,9 +9,38 @@ class Cliente extends Model
 {	
 	protected $fillable = ['nombre','apellidoPaterno','apellidoMaterno','rut','email','comentario'];
 
-    /**
-     * Guardamos el cliente con los teelfonos y sus direcciones
-     */
+
+	/**
+	 * Relaciones
+	 */
+	
+	public function direcciones(){
+        return $this->hasMany('App\Model\Direccion');
+    }
+
+
+    public function telefonos(){
+        return $this->hasMany('App\Model\Telefono');
+    }
+
+
+	public function productoClientes(){
+        return $this->hasMany('App\Model\ProductoCliente');
+    }
+
+
+    public function productos(){
+        return $this->belongsToMany('App\Model\Producto','producto_cliente');
+    }
+
+
+	/**
+	 * Funciones Propias del modelo 
+	*/
+
+   
+    // Guardamos el cliente con los teelfonos y sus direcciones
+     
     public static function saveData($response){
 
     		

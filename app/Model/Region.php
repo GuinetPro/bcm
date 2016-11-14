@@ -12,4 +12,10 @@ class Region extends Model
      * @var string
      */
     protected $table = 'regiones';
+
+	protected $fillable = ['nombre'];
+
+    public function comunas(){
+        return $this->hasMany('App\Model\Comuna');
+    }
 }

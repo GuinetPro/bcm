@@ -11,8 +11,12 @@
 |
 */
 
+Route::get('/', 'ClienteController@index');
+
 
 Route::resource('clientes','ClienteController');
+
+Route::resource('visitas','VisitasController');
 
 Route::resource('productos','ProductosController');
 
@@ -38,10 +42,6 @@ Route::resource('telefonos','TelefonosController',[
 ] );
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 

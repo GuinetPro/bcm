@@ -31,9 +31,11 @@
             <td>{{ $c->created_at }}</td>
             <td> 
               <a class="btn btn-warning" href="{{url('/clientes/'.$c->id.'/edit')}}">
-               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+               <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar
               </a>
-
+              <a class="btn btn-info" href="{{url('/clientes/'.$c->id)}}">
+               <i class="fa fa-tasks" aria-hidden="true"></i>  Ficha
+              </a>
            
             </td>
 

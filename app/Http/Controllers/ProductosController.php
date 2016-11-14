@@ -68,12 +68,12 @@ class ProductosController extends Controller
         $producto->nombre       = $request->nombre;
         $producto->precio       = $request->precio;
         $producto->codigo       = $request->codigo;
-        $producto->categoria_id = $request->categoria_id;
-        $producto->marca_id     = $request->marca_id;
-        $producto->modelo_id    = $request->modelo_id;
-        $producto->tipo_gas_id  = $request->tipo_gas_id;
-        $producto->tiro_id      = $request->tiro_id;
-        $producto->litraje_id   = $request->litraje_id;
+        $producto->categoria_id = (int)$request->categoria_id;
+        $producto->marca_id     = (int)$request->marca_id;
+        $producto->modelo_id    = (int)$request->modelo_id;
+        $producto->tipo_gas_id  = (int)$request->tipo_gas_id;
+        $producto->tiro_id      = (int)$request->tiro_id;
+        $producto->litraje_id   = (int)$request->litraje_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
 
@@ -114,8 +114,12 @@ class ProductosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $producto   = Producto::find((int)$id);
+        if(!$producto )
+        {
+            return response()->view('errors.500', [], 500);
+        }
     }
 
     /**
@@ -153,20 +157,20 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductoRequest $request, $id)
     {
  
-        $producto   = Producto::find($id);
+        $producto   = Producto::find((int)$id);
 
         $producto->nombre       = $request->nombre;
         $producto->precio       = $request->precio;
         $producto->codigo       = $request->codigo;
-        $producto->categoria_id = $request->categoria_id;
-        $producto->marca_id     = $request->marca_id;
-        $producto->modelo_id    = $request->modelo_id;
-        $producto->tipo_gas_id  = $request->tipo_gas_id;
-        $producto->tiro_id      = $request->tiro_id;
-        $producto->litraje_id   = $request->litraje_id;
+        $producto->categoria_id = (int)$request->categoria_id;
+        $producto->marca_id     = (int)$request->marca_id;
+        $producto->modelo_id    = (int)$request->modelo_id;
+        $producto->tipo_gas_id  = (int)$request->tipo_gas_id;
+        $producto->tiro_id      = (int)$request->tiro_id;
+        $producto->litraje_id   = (int)$request->litraje_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
 
@@ -185,10 +189,6 @@ class ProductosController extends Controller
 
             $producto->imagen =  $input['imagename'];
         }
-
-
-
-           
 
 
         if($producto->save()){

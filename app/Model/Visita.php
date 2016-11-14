@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Estado extends Model
+class Visita extends Model
 {
-    protected $fillable = ['nombre'];
+    //
 }
