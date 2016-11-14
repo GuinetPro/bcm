@@ -25,7 +25,7 @@ class ProductoRequest extends FormRequest
     {
         return [
             
-            'nombre'        => 'required|max:50',
+            'nombre'        => 'required|max:200',
             'codigo'        => 'required|max:50',
             'categoria_id'  => 'required',
             'marca_id'      => 'required',

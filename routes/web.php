@@ -14,7 +14,13 @@
 Route::get('/', 'ClienteController@index');
 
 
+Route::resource('productoCliente','ProductoClienteController');
+
+
 Route::resource('clientes','ClienteController');
+
+Route::resource('modelos','ModelosController');
+
 
 Route::resource('visitas','VisitasController');
 

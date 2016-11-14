@@ -53,7 +53,11 @@
     <script src="{{ url('/app/factory/Region.js') }}"></script>
     
     <script src="{{ url('/app/factory/Comuna.js') }}"></script>
+
+    <script src="{{ url('/app/factory/Modelo.js') }}"></script>
     
+    <script src="{{ url('/app/factory/Producto.js') }}"></script>
+
     <script src="{{ url('/app/factory/Direccion.js') }}"></script>
     
     <script src="{{ url('/app/factory/Telefono.js') }}"></script>

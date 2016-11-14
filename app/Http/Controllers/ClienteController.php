@@ -5,9 +5,10 @@ use App\Model\Cliente;
 use App\Model\Region;
 use App\Model\Telefono;
 use App\Model\Direccion;
-
+use App\Model\Categoria;
 use Illuminate\Http\Request;
-
+use App\Model\Modelo;
+use App\Model\Marca;
 use  App\Http\Requests\ClienteRequest;
 
 class ClienteController extends Controller
@@ -65,7 +66,23 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = Cliente::find($id);
-        return view("clientes.show",["cliente" => $cliente]);
+
+        $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
+
+        $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
+
+
+        if( !$cliente ){
+             \Flash::error('El Cliente que buscano existe.');
+            return redirect("/clientes");
+        }else{
+            return view("clientes.show",["cliente" => $cliente,
+                                         "categoriaList" => $categorias,
+                                          "marcaList"    => $marca
+                                         ]);
+        }
+
+       
     }
 
     /**
@@ -77,7 +94,13 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
-        return view("clientes.edit",["cliente" => $cliente]);
+
+        if( !$cliente ){
+             \Flash::error('El Cliente que busca no existe.');
+            return redirect("/clientes");
+        }else{
+            return view("clientes.edit",["cliente" => $cliente]);
+        }      
     }
 
     /**

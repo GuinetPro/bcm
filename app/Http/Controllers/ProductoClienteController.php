@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Modelo;
+use App\Model\ProductoCliente;
 
 
-class ModelosController extends Controller
+class ProductoClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,19 +36,35 @@ class ModelosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $productoCliente   = new ProductoCliente;
+        
+        $producto->producto_id     = $request->nombre;
+        $producto->cliente_id      = $request->precio;
+        $producto->direccion_id    = $request->codigo;
+
+        if($productoCliente->save()){
+         
+           return response()->json(["success" => true],200);
+        }else{
+          
+          return response()->json(["error" => true],200);
+        }
+
     }
 
     /**
-     * Displiega informacion por id categoria.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-         $modelos = Modelo::where('categoria_id',$id)->get();
-         return response()->json($modelos);
+
+
+
+
     }
 
     /**

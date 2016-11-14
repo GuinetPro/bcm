@@ -135,3 +135,81 @@ app.controller("ClienteCtrl",function($scope,$http,$timeout,Region,Comuna,Direcc
 
 
 });
+
+
+
+app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto){
+
+	   $scope.error = false;
+	   $scope.errorMessage ="";
+	   $scope.modelos     = [];
+	   $scope.productos   = [];
+	   $scope.categoria   ="";
+	   $scope.marca       ="";
+	   $scope.modelo      ="";
+
+
+
+	   $scope.reset = function(){
+
+
+	   }
+
+
+ 	   $scope.loadModelos = function(categoria_id){
+   			
+		
+ 	   	 $http.get(Base+'/modelos/'+categoria_id)
+          .success(function (data) {
+            $scope.modelos = data;
+          });	
+ 	   }
+
+
+ 	   $scope.loadProductos = function(){
+   			
+	 	   Producto.get($scope.categoria,$scope.marca,$scope.modelo).then(function (data) {
+			   $scope.productos = data;
+			});
+ 	   }
+
+ 	   $scope.saveProducto = function (){
+
+
+			var data = new FormData();
+
+			data.append('categoria_id', $scope.categoria);
+			data.append('marca_id', $scope.marca);
+			data.append('modelo_id', $scope.modelo);
+			data.append('direccion_id', $scope.direccion);
+			data.append('_token', $( "input[name='_token']" ).val() );
+
+
+
+			$.ajax({
+				   
+				   url: Base+'/productoCliente',
+				   
+				   method: 'POST',
+				   
+				   data: data,
+				   
+				   processData: false,
+				   
+				   contentType: false,
+				   
+				   success: function(response) {
+
+							console.log(response);
+				        },
+		           error: function(xhr, status, error) {
+		            		 $('#myModal').modal('hide');
+		            }
+			});
+
+
+
+ 	   		
+ 	   }
+
+});
