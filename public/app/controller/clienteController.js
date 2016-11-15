@@ -176,14 +176,10 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto)
  	   $scope.saveProducto = function (){
 
 
-			var data = new FormData();
 
-			data.append('categoria_id', $scope.categoria);
-			data.append('marca_id', $scope.marca);
-			data.append('modelo_id', $scope.modelo);
-			data.append('direccion_id', $scope.direccion);
-			data.append('_token', $( "input[name='_token']" ).val() );
 
+			//alert(  $( "input[name='_token']" ).val() );
+			//return
 
 
 			$.ajax({
@@ -191,9 +187,8 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto)
 				   url: Base+'/productoCliente',
 				   
 				   method: 'POST',
-				   
-				   data: data,
-				   
+				     dataType: 'json',
+				   data:  $("form[name=crearProductocliente]").serialize(),				   
 				   processData: false,
 				   
 				   contentType: false,
@@ -203,7 +198,7 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto)
 							console.log(response);
 				        },
 		           error: function(xhr, status, error) {
-		            		 $('#myModal').modal('hide');
+		            		console.log(error);
 		            }
 			});
 

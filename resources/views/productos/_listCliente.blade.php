@@ -64,7 +64,7 @@
         <h4 class="modal-title">Relacionar Producto</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form name="crearProductocliente" method="post">
                {{ csrf_field() }}
         	  <div class="form-group">
 			    <label for="nombre">Categoria</label>
@@ -78,14 +78,14 @@
 
 			  <div class="form-group">
 			    <label for="nombre">Modelo</label>
-			    <select class="form-control" ng-model="modelo" ng-change="loadProductos()">
+			    <select class="form-control" name="modelo" ng-model="modelo" ng-change="loadProductos()">
 			    	<option ng-repeat="m in modelos" value="<% m.id %>"><% m.nombre %></option>
 			    </select>
 			  </div>
 
 			  <div class="form-group">
 			    <label for="nombre">Producto</label>
-			    <select class="form-control" ng-model="producto" >
+			    <select class="form-control" ng-model="producto" name="producto">
 			    	<option ng-repeat="p in productos" value="<% p.id %>"><% p.nombre %></option>
 			    </select>			  
 			  </div>
@@ -93,7 +93,7 @@
 
 			 <div class="form-group">
 			    <label for="nombre">Direccion</label>
-			    <select class="form-control" ng-model="direccion" >
+			    <select class="form-control" ng-model="direccion" name="direccion">
 			    	<option>Escoge una Direccion</option>
 			     @foreach  ($cliente->direcciones()->get() as $d)
 				 	<option  value="{{ $d->id }}">{{ $d->calle }}</option>

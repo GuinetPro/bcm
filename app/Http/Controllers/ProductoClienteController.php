@@ -37,11 +37,12 @@ class ProductoClienteController extends Controller
     public function store(Request $request)
     {
         
+         if(Request::ajax()) {
         $productoCliente   = new ProductoCliente;
         
-        $producto->producto_id     = $request->nombre;
-        $producto->cliente_id      = $request->precio;
-        $producto->direccion_id    = $request->codigo;
+        $producto->producto_id     = $request->producto_id;
+        $producto->cliente_id      = $request->cliente_id;
+        $producto->direccion_id    = $request->direccion_id;
 
         if($productoCliente->save()){
          
@@ -50,6 +51,10 @@ class ProductoClienteController extends Controller
           
           return response()->json(["error" => true],200);
         }
+    }
+
+    
+
 
     }
 
