@@ -10,6 +10,10 @@ class ProductoCliente extends Model
     /**
      * Relaciones
      */
+    
+    
+    protected $table = 'producto_cliente';
+
     public function direccion()
     {
         return $this->hasOne('App\Model\Direccion');

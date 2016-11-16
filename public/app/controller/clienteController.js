@@ -176,30 +176,35 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto)
  	   $scope.saveProducto = function (){
 
 
+			$.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
 
 
-			//alert(  $( "input[name='_token']" ).val() );
-			//return
+            $.ajaxPrefilter(function(options, originalOptions, xhr) { // this will run before each request
+		        var token = $('meta[name="csrf-token"]').attr('content'); // or _token, whichever you are using
+
+		        if (token) {
+		            return xhr.setRequestHeader('X-CSRF-TOKEN', token); // adds directly to the XmlHttpRequest Object
+		        }
+		    });
 
 
 			$.ajax({
 				   
-				   url: Base+'/productoCliente',
-				   
-				   method: 'POST',
-				     dataType: 'json',
+				   url: Base+'/productoCliente',			   
+				   type: "POST",			  
 				   data:  $("form[name=crearProductocliente]").serialize(),				   
-				   processData: false,
-				   
-				   contentType: false,
 				   
 				   success: function(response) {
-
-							console.log(response);
-				        },
+				   		$('#productoModal').modal('hide')
+							
+				   },
 		           error: function(xhr, status, error) {
-		            		console.log(error);
-		            }
+		            	$('#productoModal').modal('hide')
+		           }
 			});
 
 

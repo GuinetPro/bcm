@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\ProductoCliente;
-
+use App\Model\Cliente;
+use App\Model\Producto;
+use App\Model\Direccion;
 
 class ProductoClienteController extends Controller
 {
@@ -37,24 +39,21 @@ class ProductoClienteController extends Controller
     public function store(Request $request)
     {
         
-         if(Request::ajax()) {
-        $productoCliente   = new ProductoCliente;
-        
-        $producto->producto_id     = $request->producto_id;
-        $producto->cliente_id      = $request->cliente_id;
-        $producto->direccion_id    = $request->direccion_id;
-
-        if($productoCliente->save()){
+         if($request->ajax()) {
          
-           return response()->json(["success" => true],200);
-        }else{
-          
-          return response()->json(["error" => true],200);
+            $productoCliente   = new ProductoCliente;   
+            $productoCliente->producto_id     = $request->producto;
+            $productoCliente->cliente_id      = $request->cliente;
+            $productoCliente->direccion_id    = $request->direccion;
+
+            if($productoCliente->save()){
+             
+               return response()->json(["success" => true],200);
+            }else{
+              
+              return response()->json(["error" => true],200);
+            }
         }
-    }
-
-    
-
 
     }
 
@@ -64,12 +63,26 @@ class ProductoClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_cliente)
     {
+        $cliente = Cliente::find($id_cliente);
 
+        $data = array();
 
+        foreach ($cliente->productoClientes()->get() as $c) {
+          
+           $data[$c->id] = array();
+           
+           $producto   = Producto::find((int)$c->producto_id);
+           $direccion   = Direccion::find((int)$c->direccion_id);
 
+           $data[$c->id]["id"] = $c->id;
+           $data[$c->id]["producto"]  = $producto;
+           $data[$c->id]["direccion"] = $direccion;
 
+        }
+       
+        return response()->json($data);
     }
 
     /**

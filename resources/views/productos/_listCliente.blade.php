@@ -65,7 +65,8 @@
       </div>
       <div class="modal-body">
         <form name="crearProductocliente" method="post">
-               {{ csrf_field() }}
+              
+              <input type="hidden" name="cliente" value="{{ $cliente->id}}">
         	  <div class="form-group">
 			    <label for="nombre">Categoria</label>
 			  	{!! Form::select('categoria_id', $categoriaList, "", ['class' => 'form-control','ng-model'=>'categoria','ng-change'=>'loadModelos(categoria)']) !!}

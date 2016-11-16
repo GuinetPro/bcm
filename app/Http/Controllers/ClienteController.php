@@ -64,7 +64,7 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { 
         $cliente = Cliente::find($id);
 
         $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
