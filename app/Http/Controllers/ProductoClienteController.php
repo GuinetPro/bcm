@@ -68,6 +68,7 @@ class ProductoClienteController extends Controller
         $cliente = Cliente::find($id_cliente);
 
         $data = array();
+        $i = 0;
 
         foreach ($cliente->productoClientes()->get() as $c) {
           
@@ -77,8 +78,10 @@ class ProductoClienteController extends Controller
            $direccion   = Direccion::find((int)$c->direccion_id);
 
            $data[$c->id]["id"] = $c->id;
+           $data[$c->id]["collapse"] = ($i == 0)?true:false;
            $data[$c->id]["producto"]  = $producto;
            $data[$c->id]["direccion"] = $direccion;
+           $i++;
 
         }
        

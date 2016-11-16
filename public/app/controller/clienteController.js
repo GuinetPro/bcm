@@ -138,7 +138,7 @@ app.controller("ClienteCtrl",function($scope,$http,$timeout,Region,Comuna,Direcc
 
 
 
-app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto){
+app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto,ProductoCliente){
 
 	   $scope.error = false;
 	   $scope.errorMessage ="";
@@ -147,8 +147,13 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto)
 	   $scope.categoria   ="";
 	   $scope.marca       ="";
 	   $scope.modelo      ="";
+	   $scope.ProductosCliente = [];
 
 
+ 	   ProductoCliente.get($('#cliente_id').val()).then(function (data) {
+		   $scope.ProductosCliente = data;
+		   console.log(data);
+		});
 
 	   $scope.reset = function(){
 

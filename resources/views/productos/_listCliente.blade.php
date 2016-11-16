@@ -4,52 +4,73 @@
 <br>
 <br>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary" ng-repeat="pro in ProductosCliente">
 		<div class="panel-heading" role="tab" id="headingOne">
 		    <h4 class="panel-title">
-		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		          Producto #1
+		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<% $index%>" aria-expanded="<%pro.collapse%>" aria-controls="collapseOne">
+		          Producto #<% $index +1%>
 		        </a>
 		    </h4>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+		<div  id="collapseOne<% $index%>" ng-class="{'in': pro.collapse == true}" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
 		      <div class="panel-body">
 		        
-		        <div class="media">
+		        <div class="media" >
 				  <div class="media-left">
 				    <a href="#">
-				      <img class="media-object" src="..." alt="...">
+				      <img style="width: 64px; height: 64px;" class="media-object" src="{{ url('imagenes')  }}/<% pro.producto.imagen%>" alt="...">
 				    </a>
 				  </div>
 				  <div class="media-body">
 				    <table class="table table-striped">
 				    	<tr>
 				    		<td>Modelo</td>
-				    		<td>vc</td>
+				    		
+				    	</tr>
+				    	<tr>
+				    		<td><% pro.producto.nombre%></td>
 				    	</tr>
 				    	<tr>
 				    		<td>Fecha de Compra</td>
-				    		<td></td>
+				    		
+				    	</tr>
+				    	<tr>
+				    		<td><% pro.producto.fecha_compra%></td>
 				    	</tr>
 				    	<tr>
 				    		<td>Lugar de Compra</td>
-				    		<td></td>
+				    		
+				    	</tr>
+				    	<tr>
+				    		<td><% pro.producto.lugar_compra%></td>
 				    	</tr>
 				    	<tr>
 				    		<td>Garantia</td>
+				    		
+				    	</tr>
+				    	<tr>
 				    		<td></td>
 				    	</tr>
 				    	<tr>
 				    		<td>Presupuesto</td>
-				    		<td></td>
+				    		
 				    	</tr>
 				    	<tr>
+				    		<td><% pro.producto.precio%></td>
+				    	</tr>
+
+				    	<tr>
 				    		<td>Atencion Pendiente?</td>
+				    		
+				    	</tr>	
+				    	<tr>
 				    		<td></td>
-				    	</tr>				    	
+				    	</tr>			    	
 				    </table>
 				  </div>
 				</div>
+
+
 		      </div>
 		</div>
 	</div>

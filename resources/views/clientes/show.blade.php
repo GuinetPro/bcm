@@ -3,6 +3,7 @@
  @section("content")
   <div class="container white" ng-controller="ClienteShowCtrl">
     <h1>Ficha Cliente </h1>
+    <input type="hidden" id="cliente_id" value="{{$cliente->id}}">	
 
  	<div class="row">
 	  
