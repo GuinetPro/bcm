@@ -5,7 +5,7 @@
 		    	  			
 		  </div>
 		  <div class="panel-body"><div class="pull-right">
-			<a class="btn btn-success" href="{{ url('/visitas/create/'.$cliente->id)}}">Generar Atencion</a>
+			<a class="btn btn-success" href="{{ url('/visitas/create')}}?cliente_id={{$cliente->id}}">Generar Atencion</a>
 		</div>
 		<br>
 		<br>

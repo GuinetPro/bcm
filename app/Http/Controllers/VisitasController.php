@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Visita;
+use App\Model\Cliente;
 
 class VisitasController extends Controller
 {
@@ -21,9 +23,20 @@ class VisitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $visita  = new Visita;
+
+        $cliente = Cliente::find((int)$request->input('cliente_id'));
+
+        if (!$cliente) {
+             \Flash::error('El Cliente que busca no existe.');
+            return redirect()->back();
+        }
+      
+
+
+        return view("visitas.create",["visita" => $visita,'cliente'=> $cliente]);
     }
 
     /**

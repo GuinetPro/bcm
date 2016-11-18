@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'BCM') }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('/css/font-awesome.min.css') }}">
-    
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}">
     <!-- Styles 
     <link href="/css/app.css" rel="stylesheet">
 -->

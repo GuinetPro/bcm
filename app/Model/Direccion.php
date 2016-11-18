@@ -66,4 +66,14 @@ class Direccion extends Model
         return true;
     	
     }
+
+
+    /** 
+     * Relaciones
+     * @return [type] [description]
+     */
+     public function comuna()
+    {
+        return $this->belongsTo('App\Model\Comuna');
+    }
 }

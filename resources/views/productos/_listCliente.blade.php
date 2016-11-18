@@ -22,37 +22,37 @@
 				    </a>
 				  </div>
 				  <div class="media-body">
-				    <table class="table table-striped">
+				    <table class="table table-striped table-productos">
 				    	<tr>
-				    		<td>Modelo</td>
+				    		<td class="table-productos-title">Modelo</td>
 				    		
 				    	</tr>
 				    	<tr>
 				    		<td><% pro.producto.nombre%></td>
 				    	</tr>
 				    	<tr>
-				    		<td>Fecha de Compra</td>
+				    		<td class="table-productos-title">Fecha de Compra</td>
 				    		
 				    	</tr>
 				    	<tr>
 				    		<td><% pro.producto.fecha_compra%></td>
 				    	</tr>
 				    	<tr>
-				    		<td>Lugar de Compra</td>
+				    		<td class="table-productos-title">Lugar de Compra</td>
 				    		
 				    	</tr>
 				    	<tr>
 				    		<td><% pro.producto.lugar_compra%></td>
 				    	</tr>
 				    	<tr>
-				    		<td>Garantia</td>
+				    		<td class="table-productos-title">Garantia</td>
 				    		
 				    	</tr>
 				    	<tr>
 				    		<td></td>
 				    	</tr>
 				    	<tr>
-				    		<td>Presupuesto</td>
+				    		<td class="table-productos-title">Presupuesto</td>
 				    		
 				    	</tr>
 				    	<tr>
@@ -60,7 +60,7 @@
 				    	</tr>
 
 				    	<tr>
-				    		<td>Atencion Pendiente?</td>
+				    		<td class="table-productos-title">Atencion Pendiente?</td>
 				    		
 				    	</tr>	
 				    	<tr>
