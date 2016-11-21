@@ -15,7 +15,7 @@
 	  </div>
 
 	  <div class="col-md-9">
-	  	 @include('visitas._listCliente',[])	
+	  	 @include('visitas._listCliente',["visitas" => $visitas])	
 	  </div>
 
 	  	

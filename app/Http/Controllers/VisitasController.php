@@ -63,7 +63,28 @@ class VisitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $visita   = new Visita;
+        $visita->tipo_pago_id           = $request->tipo_pago_id;
+        $visita->taller_distribuidor_id = $request->taller_distribuidor_id;
+        $visita->tipo_trabajo_id        = $request->tipo_trabajo_id;
+        $visita->solicitante_id      = $request->solicitante_id;
+        $visita->tipo_presupuesto_id = $request->tipo_presupuesto_id;
+        $visita->nomina_tienda_id = $request->nomina_tienda_id;
+        $visita->fecha_visita     = $request->fecha_visita;
+        $visita->taller_id        = $request->taller_id;
+        $visita->fecha_visita     = $request->fecha_visita;
+        $visita->descripcion      = $request->descripcion;
+        $visita->cliente_id       = $request->cliente_id;
+
+        if($visita->save()){
+            \Flash::success('Visita Creada con Exito.'); //<--FLASH MESSAGE
+            return redirect("clientes/".$request->cliente_id);
+        }else{
+            return view("visitas.create",["producto" => $visita]);
+        }
+
     }
 
     /**

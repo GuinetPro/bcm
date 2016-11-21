@@ -1,6 +1,9 @@
 @include('partials._error',[])
 
 {!! Form::open(['url' => $url, 'method' => $method ]) !!}
+  
+
+{!! Form::hidden('cliente_id', $cliente->id, $visita->cliente_id, ['class' => 'form-control']) !!}
 
   <div class="form-group">
     <label for="nombre">Tipo de Atencion</label>
@@ -32,6 +35,13 @@
     <label for="nombre">Nomina de Tiendas</label>
   	{!! Form::select('nomina_tienda_id', $nomina, $visita->nomina_tienda_id, ['class' => 'form-control']) !!}
   </div>
+
+  <div class="form-group">
+    <label for="nombre">Descripcion</label>
+    {{ Form::textarea('descripcion',$visita->descripcion,['class' => 'form-control', 'placeholder' => 'Descripcion...'])  }}
+  </div>
+
+
 	
   <h3 class="bg-primary">Taller y Atención</h3>
 
@@ -50,5 +60,9 @@
     {{ Form::text('fecha_visita',$visita->fecha_visita,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Fecha'])  }}
   </div>
 
+  <div class="form-group text-right">
+    <a href="{{url('/visitas')}}"> Regresar al listado de Visitas </a>
+    <input type="submit" value="Guardar" class="btn btn-success btn-lg">
+  </div>
 
 {!! Form::close() !!}

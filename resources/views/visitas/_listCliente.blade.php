@@ -23,12 +23,16 @@
 						</tr>
 					</thead>
 					<tbody>
+
+					
+
+					  @foreach  ($visitas as $v)
 						<tr>
 							<td>
-								
+								{{ $v->tipoPago->nombre}}
 							</td>
 							<td>
-								
+								{{ $v->tipoTrabajo->trabajo}}
 							</td>
 							<td>
 								
@@ -49,6 +53,8 @@
 								
 							</td>
 						</tr>
+
+				     @endforeach
 					</tbody>
 			  	</table>	  	
 		  </div>

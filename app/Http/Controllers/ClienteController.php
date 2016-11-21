@@ -11,6 +11,8 @@ use App\Model\Modelo;
 use App\Model\Marca;
 use  App\Http\Requests\ClienteRequest;
 use App\Model\TipoPago;
+use App\Model\Visita;
+
 class ClienteController extends Controller
 {
     /**
@@ -71,13 +73,16 @@ class ClienteController extends Controller
         $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
 
 
+        $visitas = Visita::where('cliente_id',$id)->get();
+
         if( !$cliente ){
              \Flash::error('El Cliente que buscano existe.');
             return redirect("/clientes");
         }else{
             return view("clientes.show",["cliente" => $cliente,
                                          "categoriaList" => $categorias,
-                                          "marcaList"    => $marca
+                                          "marcaList"    => $marca,
+                                           "visitas"     => $visitas 
                                          ]);
         }
 

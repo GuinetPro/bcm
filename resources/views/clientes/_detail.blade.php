@@ -3,7 +3,9 @@
 		    <h3 class="panel-title">Detalle cliente</h3>
 		  </div>
 		  <div class="panel-body">
-			  	<div class="form-group">
+
+		   
+		    <div class="form-group">
 		  		<p>{{ $cliente->nombre.' '.$cliente->apellidoPaterno.' '.$cliente->apellidoMaterno  }}</p>
 		  	</div>
 
