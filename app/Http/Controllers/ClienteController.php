@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Model\Modelo;
 use App\Model\Marca;
 use  App\Http\Requests\ClienteRequest;
-
+use App\Model\TipoPago;
 class ClienteController extends Controller
 {
     /**
@@ -34,7 +34,6 @@ class ClienteController extends Controller
     {
         $cliente  = new Cliente;
         $regiones  =  Region::all();
-
         return view("clientes.create",["cliente" => $cliente]);
     }
 

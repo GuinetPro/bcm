@@ -4,16 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PagoTipoTable extends Migration
+class ServicioRealizadoTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * cd_pen en la base de datos original tpo_pen
      * @return void
      */
     public function up()
     {
-        Schema::create('tipo_pagos', function (Blueprint $table) {
+        Schema::create('servicio_realizado', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->boolean('activado');
@@ -28,6 +28,6 @@ class PagoTipoTable extends Migration
      */
     public function down()
     {
-       Schema::drop('tipo_pagos');
+         Schema::dropIfExists('servicio_realizado');
     }
 }

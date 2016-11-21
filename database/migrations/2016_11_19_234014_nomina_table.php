@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PagoTipoTable extends Migration
+class NominaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class PagoTipoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_pagos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre');
+        Schema::create('nomina_tienda',function(Blueprint $table){
+
+            $table->increments("id");
+            $table->integer('cod2');
+            $table->string("tienda");
             $table->boolean('activado');
+    
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class PagoTipoTable extends Migration
      */
     public function down()
     {
-       Schema::drop('tipo_pagos');
+        Schema::dropIfExists('nomina_tienda');
     }
 }
