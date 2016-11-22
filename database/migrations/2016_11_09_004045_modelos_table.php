@@ -17,8 +17,8 @@ class ModelosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
 
-            $table->integer('categoria_id')->unsigned();
-            $table->foreign("categoria_id")->references("id")->on("categorias");
+            $table->integer('tipo_producto_id')->unsigned();
+            $table->foreign("tipo_producto_id")->references("id")->on("tipo_productos");
 
 
             $table->timestamps();

@@ -11,7 +11,7 @@ class TipoPagoTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_pagos')->insert([
+        DB::table('tipo_atenciones')->insert([
         	[
         	'id' => 1,
             'nombre' => 'POR PAGAR',

@@ -10,6 +10,7 @@ use App\Model\Tiro;
 use App\Model\Litraje;
 use App\Model\Modelo;
 use App\Model\Marca;
+use App\Model\TipoProducto;
 use  App\Http\Requests\ProductoRequest;
 use Image;
 
@@ -38,9 +39,12 @@ class ProductosController extends Controller
         $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
         $tipo_gas   = TipoGas::pluck('nombre', 'id')->prepend('Selecciona una TipoGas','');
         $tiro       = Tiro::pluck('nombre', 'id')->prepend('Selecciona una Tiro','');
-        $litraje    = Litraje::pluck('nombre', 'id')->prepend('Selecciona una Litraje','');
+        $litraje    = Litraje::pluck('lts', 'id')->prepend('Selecciona una Litraje','');
         $modelo     = Modelo::pluck('nombre', 'id')->prepend('Selecciona una Modelo','');
         $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
+        $tipoProductos = TipoProducto::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
+
+        
 
         return view("productos.create",[
                                         "producto"      => $producto,
@@ -49,6 +53,7 @@ class ProductosController extends Controller
                                         "modeloList"    => $modelo,
                                         "tipo_gasList"  => $tipo_gas,
                                         "tiroList"      => $tiro,
+                                        "tipoProductos"      => $tipoProductos,
                                         "litrajeList"   => $litraje 
 
                                         ]);
@@ -68,12 +73,11 @@ class ProductosController extends Controller
         $producto->nombre       = $request->nombre;
         $producto->precio       = $request->precio;
         $producto->codigo       = $request->codigo;
-        $producto->categoria_id = (int)$request->categoria_id;
         $producto->marca_id     = (int)$request->marca_id;
-        $producto->modelo_id    = (int)$request->modelo_id;
         $producto->tipo_gas_id  = (int)$request->tipo_gas_id;
         $producto->tiro_id      = (int)$request->tiro_id;
         $producto->litraje_id   = (int)$request->litraje_id;
+        $producto->tipo_producto_id   = (int)$request->tipo_producto_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
 
@@ -135,9 +139,10 @@ class ProductosController extends Controller
         $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
         $tipo_gas   = TipoGas::pluck('nombre', 'id')->prepend('Selecciona una TipoGas','');
         $tiro       = Tiro::pluck('nombre', 'id')->prepend('Selecciona una Tiro','');
-        $litraje    = Litraje::pluck('nombre', 'id')->prepend('Selecciona una Litraje','');
+        $litraje    = Litraje::pluck('lts', 'id')->prepend('Selecciona una Litraje','');
         $modelo     = Modelo::pluck('nombre', 'id')->prepend('Selecciona una Modelo','');
         $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
+        $tipoProductos = TipoProducto::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
 
         return view("productos.edit",[
                                         "producto"      => $producto,
@@ -146,6 +151,7 @@ class ProductosController extends Controller
                                         "modeloList"    => $modelo,
                                         "tipo_gasList"  => $tipo_gas,
                                         "tiroList"      => $tiro,
+                                        "tipoProductos"      => $tipoProductos,
                                         "litrajeList"   => $litraje 
 
                                         ]);
@@ -166,12 +172,11 @@ class ProductosController extends Controller
         $producto->nombre       = $request->nombre;
         $producto->precio       = $request->precio;
         $producto->codigo       = $request->codigo;
-        $producto->categoria_id = (int)$request->categoria_id;
         $producto->marca_id     = (int)$request->marca_id;
-        $producto->modelo_id    = (int)$request->modelo_id;
         $producto->tipo_gas_id  = (int)$request->tipo_gas_id;
         $producto->tiro_id      = (int)$request->tiro_id;
         $producto->litraje_id   = (int)$request->litraje_id;
+        $producto->tipo_producto_id   = (int)$request->tipo_producto_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
 

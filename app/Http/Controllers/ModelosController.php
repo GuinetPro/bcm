@@ -47,7 +47,7 @@ class ModelosController extends Controller
      */
     public function show($id)
     {
-         $modelos = Modelo::where('categoria_id',$id)->get();
+         $modelos = Modelo::all();//Modelo::where('categoria_id',$id)->get();
          return response()->json($modelos);
     }
 

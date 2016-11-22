@@ -43,12 +43,12 @@ class VisitaTable extends Migration
             $table->integer('telefono_id')->unsigned();
             $table->integer('tipo_presupuesto_id')->unsigned();
             $table->integer('tipo_trabajo_id')->unsigned();
-            $table->integer('tipo_pago_id')->unsigned();
+            $table->integer('tipo_atencion_id')->unsigned();
             $table->integer('servicio_realizado_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
             $table->foreign("cliente_id")->references("id")->on("clientes");
-            $table->foreign("tipo_pago_id")->references("id")->on("tipo_pagos");
+            $table->foreign("tipo_atencion_id")->references("id")->on("tipo_atenciones");
             $table->foreign("estado_id")->references("id")->on("estados");
             $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("telefono_id")->references("id")->on("telefonos");

@@ -34,6 +34,12 @@
   	{!! Form::select('categoria_id', $categoriaList, $producto->categoria_id, ['class' => 'form-control']) !!}
   </div>
 
+
+  <div class="form-group">
+    <label for="nombre">Tipo de Productos</label>
+    {!! Form::select('tipo_producto_id', $tipoProductos, $producto->tipo_producto_id, ['class' => 'form-control']) !!}
+  </div>
+
   <div class="form-group">
     <label for="nombre">Marca</label>
   	{!! Form::select('marca_id', $marcaList, $producto->marca_id, ['class' => 'form-control']) !!}

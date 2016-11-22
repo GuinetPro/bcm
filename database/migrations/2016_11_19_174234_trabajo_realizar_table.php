@@ -19,8 +19,8 @@ class TrabajoRealizarTable extends Migration
             $table->string("trabajo");
             $table->boolean('activado');
 
-            $table->integer('tipo_pago_id')->unsigned();
-            $table->foreign("tipo_pago_id")->references("id")->on("tipo_pagos");
+            $table->integer('tipo_atencion_id')->unsigned();
+            $table->foreign("tipo_atencion_id")->references("id")->on("tipo_atenciones");
 
             $table->timestamps();
         });

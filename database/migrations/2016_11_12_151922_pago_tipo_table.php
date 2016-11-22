@@ -13,7 +13,7 @@ class PagoTipoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_pagos', function (Blueprint $table) {
+        Schema::create('tipo_atenciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->boolean('activado');
@@ -28,6 +28,6 @@ class PagoTipoTable extends Migration
      */
     public function down()
     {
-       Schema::drop('tipo_pagos');
+       Schema::drop('tipo_atenciones');
     }
 }

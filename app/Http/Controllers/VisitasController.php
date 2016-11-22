@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Visita;
 use App\Model\Cliente;
-use App\Model\TipoPago;
+use App\Model\TipoAtencion;
 use App\Model\TallerDistribuidor;
 use App\Model\TrabajoRealizar;
 use App\Model\Solicitante;
@@ -34,7 +34,7 @@ class VisitasController extends Controller
     {
         $visita  = new Visita;
 
-        $tipoAtencion = TipoPago::pluck('nombre', 'id')->prepend('Selecciona una Atencion','');
+        $tipoAtencion = TipoAtencion::pluck('nombre', 'id')->prepend('Selecciona una Atencion','');
         $taller_dist  = TallerDistribuidor::pluck('distribuidor', 'id')->prepend('Selecciona un Distribuidor','');
         $trabajo_re   = TrabajoRealizar::pluck('trabajo', 'id')->prepend('Selecciona un Trabajo','');
         $solicitantes = Solicitante::pluck('solicitante', 'id')->prepend('Selecciona un Solicitante','');
@@ -66,7 +66,7 @@ class VisitasController extends Controller
 
 
         $visita   = new Visita;
-        $visita->tipo_pago_id           = $request->tipo_pago_id;
+        $visita->tipo_atencion_id           = $request->tipo_atencion_id;
         $visita->taller_distribuidor_id = $request->taller_distribuidor_id;
         $visita->tipo_trabajo_id        = $request->tipo_trabajo_id;
         $visita->solicitante_id      = $request->solicitante_id;
