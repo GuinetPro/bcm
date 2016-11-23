@@ -16,8 +16,13 @@ class TalleresTable extends Migration
         Schema::create('talleres', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('razon_social');
+            $table->string('codigo_sap');
             $table->string('email');
             $table->string('telefono');
+            $table->string('direccion');
+            $table->string('rut');
+            $table->integer('decuento');
             $table->string('movil');
             $table->string('comentario');
             $table->integer('comuna_id')->unsigned();

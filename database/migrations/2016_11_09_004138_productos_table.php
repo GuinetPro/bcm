@@ -28,8 +28,11 @@ class ProductosTable extends Migration
             $table->integer('litraje_id')->unsigned();
             $table->integer('marca_id')->unsigned();
             $table->integer('tipo_producto_id')->unsigned();
+            $table->integer('categoria_id')->unsigned();
+            $table->integer('modelo_id')->unsigned();
            
-
+            $table->foreign("categoria_id")->references("id")->on("categorias");
+            $table->foreign("modelo_id")->references("id")->on("modelos");
             $table->foreign("tipo_gas_id")->references("id")->on("tipo_gas");
             $table->foreign("tiro_id")->references("id")->on("tiros");
             $table->foreign("litraje_id")->references("id")->on("litrajes");

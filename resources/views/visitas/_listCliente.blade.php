@@ -29,10 +29,10 @@
 					  @foreach  ($visitas as $v)
 						<tr>
 							<td>
-								{{ $v->tipoPago->nombre}}
+								{{ $v->tipoPago}}
 							</td>
 							<td>
-								{{ $v->tipoTrabajo->trabajo}}
+								
 							</td>
 							<td>
 								

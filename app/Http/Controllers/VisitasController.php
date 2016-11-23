@@ -11,7 +11,10 @@ use App\Model\TrabajoRealizar;
 use App\Model\Solicitante;
 use App\Model\TipoPresupuesto;
 use App\Model\NominaTienda;
+use App\Model\Direccion;
 use App\Model\Taller;
+use App\Model\ProductoCliente;
+
 
 class VisitasController extends Controller
 {
@@ -64,6 +67,9 @@ class VisitasController extends Controller
     public function store(Request $request)
     {
 
+//dd($request->producto_id);
+
+        $proCliente = ProductoCliente::Where( ["producto_id" => $request->producto_id,"cliente_id" => $request->cliente_id])->first();
 
         $visita   = new Visita;
         $visita->tipo_atencion_id           = $request->tipo_atencion_id;
@@ -74,9 +80,10 @@ class VisitasController extends Controller
         $visita->nomina_tienda_id = $request->nomina_tienda_id;
         $visita->fecha_visita     = $request->fecha_visita;
         $visita->taller_id        = $request->taller_id;
-        $visita->fecha_visita     = $request->fecha_visita;
         $visita->descripcion      = $request->descripcion;
         $visita->cliente_id       = $request->cliente_id;
+        $visita->producto_cliente_id= $proCliente->id;
+        //$visita->tipo_trabajo       = 0;
 
         if($visita->save()){
             \Flash::success('Visita Creada con Exito.'); //<--FLASH MESSAGE

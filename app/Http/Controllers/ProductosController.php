@@ -80,7 +80,8 @@ class ProductosController extends Controller
         $producto->tipo_producto_id   = (int)$request->tipo_producto_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
-
+        $producto->categoria_id = (int)$request->categoria_id;
+        $producto->modelo_id    = (int)$request->modelo_id;
 
         $image = $request->file('imagen');
 
@@ -135,7 +136,16 @@ class ProductosController extends Controller
      */
     public function edit($id)
     {
+
         $producto   = Producto::find($id);
+
+        if( !$producto ){
+             \Flash::error('El Productos que busca no existe.');
+            return redirect("/productos");
+        }
+
+
+
         $categorias = Categoria::pluck('nombre', 'id')->prepend('Selecciona una Categoria','');
         $tipo_gas   = TipoGas::pluck('nombre', 'id')->prepend('Selecciona una TipoGas','');
         $tiro       = Tiro::pluck('nombre', 'id')->prepend('Selecciona una Tiro','');
@@ -143,7 +153,7 @@ class ProductosController extends Controller
         $modelo     = Modelo::pluck('nombre', 'id')->prepend('Selecciona una Modelo','');
         $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
         $tipoProductos = TipoProducto::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
-
+        
         return view("productos.edit",[
                                         "producto"      => $producto,
                                         "categoriaList" => $categorias,
@@ -179,6 +189,8 @@ class ProductosController extends Controller
         $producto->tipo_producto_id   = (int)$request->tipo_producto_id;
         $producto->lugar_compra = $request->lugar_compra;
         $producto->fecha_compra = $request->fecha_compra;
+        $producto->categoria_id = (int)$request->categoria_id;
+        $producto->modelo_id    = (int)$request->modelo_id;
 
 
         $image = $request->file('imagen');

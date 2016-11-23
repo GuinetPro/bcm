@@ -2,12 +2,46 @@
 
 {!! Form::open(['url' => $url, 'method' => $method ]) !!}
   
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Escoge Direccion</h3>
+      </div>
+      <div class="panel-body">
+      <div class="form-group">
+          <select class="form-control">
+            <option></option>
+            @foreach  ($cliente->direcciones as $d)
+              <option value="{{$d->id}}">{{$d->calle}} ({{$d->comuna->nombre}})</option>
+            @endforeach         
+          </select>
+        </div>
+      </div>
+    </div>
 
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Escoge un Producto</h3>
+      </div>
+      <div class="panel-body">
+      <div class="form-group">
+          <select class="form-control" name="producto_id">
+            <option></option>
+            @foreach  ($cliente->productos as $p)
+              <option value="{{$p->id}}">{{$p->nombre}}</option>
+            @endforeach         
+          </select>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="col-md-9">
 {!! Form::hidden('cliente_id', $cliente->id, $visita->cliente_id, ['class' => 'form-control']) !!}
 
   <div class="form-group">
     <label for="nombre">Tipo de Atencion</label>
-  	{!! Form::select('tipo_pago_id', $tipoAtencion, $visita->tipo_pago_id, ['class' => 'form-control']) !!}
+  	{!! Form::select('tipo_atencion_id', $tipoAtencion, $visita->tipo_atencion_id, ['class' => 'form-control']) !!}
   </div>
 
 

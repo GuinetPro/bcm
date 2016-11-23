@@ -10,7 +10,7 @@ class Visita extends Model
 
     public function tipoPago()
     {
-        return $this->belongsTo('App\Model\TipoPago');
+        return $this->belongsTo('App\Model\TipoAtencion');
     }
 
 

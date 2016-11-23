@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Model\Modelo;
 use App\Model\Marca;
 use  App\Http\Requests\ClienteRequest;
-use App\Model\TipoPago;
+use App\Model\TipoAtencion;
 use App\Model\Visita;
 
 class ClienteController extends Controller
