@@ -6,6 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProductoRequest extends FormRequest
 {
+
+    public function messages()
+    {
+        return [
+            'required' => 'El campo  :attribute  es obligatorio.',
+            'email.email' => 'El campo  :attribute  no tiene un formato valido.'         
+        ];
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *

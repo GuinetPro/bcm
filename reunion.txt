@@ -1,0 +1,88 @@
+Reunion}
+
+1- Direcciones
+
+creo primero direccion,sector,comuna
+
+los departamentos pueden ser con letras
+
+Orden (las direcciones se denominan sucursales)
+
+ rut*
+ nombre*
+ apellido*
+ materno*
+ departamento o casa (tipo vivienda)*
+ si es calle,etc* ( tipo direccion)
+ direccion *
+ numero *
+ departamento alphanumerico
+ block alphanumerico
+ sector (calles referencias es un campo comentario)
+
+ Telefono
+
+ celular
+ red fija
+ trabajo
+ recados
+
+
+ correo
+ Descripcion no aplica eliminar
+
+
+
+ Como actualizar??
+
+ TECNICOS
+
+
+cambiar gasfiter por usuario, administracion de usuarios. Se le asigna un taller
+
+
+TALLER
+
+Campos nuevos al taller
+
+2- tarifa para repuestos (si es obligatorio)
+  - descuento repuestos 0 a 45%  
+  - bonificacion repuesto (es un adicional) 0 a 12%
+  - valor kilometro esto es un valorde se ingresa a mano que es numerico
+
+3- descuento productos (no es obligatorio)
+   - calefones
+   - termos electricos
+   - calderas
+   - aire acondicionado
+   - estufas
+   - solar
+   - eficiencia energetica
+
+el camppo comentario no es necesario
+
+
+Se debe agregar la cobertura de en plazo visita24 a 48 hora,
+pueden ser varias comunas
+
+
+Ademas costo de visita es la infromacion que se despliega al call, si es caldera es de 24 horas 
+
+
+el tarifado va asociado al tipo de producto
+
+
+se debe asignar los producto y tipo de servicio por el producto que ve el atller++caldera
+califon
+otros
+
+
+
+
+*** Nuevo Producto ***
+
+Los precios se actualizan una vez al año
+
+
+
+

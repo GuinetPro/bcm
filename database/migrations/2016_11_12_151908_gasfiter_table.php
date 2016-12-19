@@ -20,8 +20,14 @@ class GasfiterTable extends Migration
             $table->string('telefono');
             $table->string('movil');
             $table->string('comentario');
+            
             $table->integer('taller_id')->unsigned();
             $table->foreign("taller_id")->references("id")->on("talleres");
+
+           //   $table->integer('user_id')->unsigned();
+          //  $table->foreign("user_id")->references("id")->on("users");
+
+
             $table->timestamps();
         });
     }

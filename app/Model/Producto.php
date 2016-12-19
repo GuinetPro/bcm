@@ -15,17 +15,18 @@ class Producto extends Model
 	 */
   	public function categoria()
     {
-        return $this->hasOne('App\Model\Categoria');
+       
+        return $this->belongsTo('App\Model\Categoria','categoria_id');
     }
 
     public function marca()
     {
-        return $this->hasOne('App\Model\Marca');
+        return $this->belongsTo('App\Model\Marca','marca_id');
     }
 
       public function modelo()
     {
-        return $this->hasOne('App\Model\Modelo');
+        return $this->belongsTo('App\Model\Modelo','modelo_id');
     }
 
       public function tipoGas()

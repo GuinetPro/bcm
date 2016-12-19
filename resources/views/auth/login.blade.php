@@ -24,11 +24,11 @@
                         <form role="form" action="{{ url('/login') }}"  method="post" class="login-form">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                    <label class="sr-only" for="email">Usuario</label>
-                                    <input type="text" name="email" placeholder="Usuario" class="form-username form-control" id="email">
-                                    @if ($errors->has('email'))
+                                    <label class="sr-only" for="username">Usuario</label>
+                                    <input type="text" name="username" placeholder="Usuario" class="form-username form-control" id="username">
+                                    @if ($errors->has('username'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('username') }}</strong>
                                         </span>
                                     @endif
                             </div>

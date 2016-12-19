@@ -104,12 +104,12 @@ class Cliente extends Model
 					        'comuna_id'     => $direcciones["comuna"][$x],
 					        'departamento'  => $direcciones["dpt"][$x],
 					        'calle' 	 => $direcciones["interior"][$x]." ".$direcciones["calle"][$x],
-					        'telefono'   => $direcciones["telefono"][$x],
+					        //'telefono'   => $direcciones["telefono"][$x],
 					        'numero' 	 => $direcciones["numero"][$x],
 					        'cliente_id' => $cliente->id,
-					        'comentario' => "",
-					        'latitud' 	 => "",
-							'longitud' 	 => "",
+					        //'comentario' => $direcciones["comentario"][$x],
+					        'latitud' 	 => $direcciones["latitud"][$x],
+							'longitud' 	 => $direcciones["longitud"][$x],
 					]);
 				}
 

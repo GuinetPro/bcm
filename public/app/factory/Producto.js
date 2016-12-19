@@ -7,7 +7,7 @@ app.factory('Producto', function($http, $q ,  $filter) {
           
        var deferred = $q.defer();
 
-         $http.get(Base+'/api/productos', {
+         $http.get(Base+'/productos', {
               params: {
                   categoria: categoria,
                   marca: marca,

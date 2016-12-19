@@ -34,7 +34,8 @@
     <body>
 
         <!-- Top content -->
-        <div class="top-content">         
+        <div class="top-content">     
+        @include('partials._error',[])    
             @include('flash::message')
             @yield('content')     
         </div>

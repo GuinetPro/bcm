@@ -42,7 +42,7 @@ class VisitaTable extends Migration
             $table->integer('taller_id')->unsigned();
             $table->integer('telefono_id')->unsigned();
             $table->integer('tipo_presupuesto_id')->unsigned();
-            $table->integer('tipo_trabajo_id')->unsigned();
+            $table->integer('trabajo_realizar_id')->unsigned();
             $table->integer('tipo_atencion_id')->unsigned();
             $table->integer('servicio_realizado_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -57,7 +57,7 @@ class VisitaTable extends Migration
             $table->foreign("solicitante_id")->references("id")->on("solicitantes");
             $table->foreign("tipo_presupuesto_id")->references("id")->on("tipo_presupuesto");
             $table->foreign("taller_distribuidor_id")->references("id")->on("taller_distribuidor");
-            $table->foreign("tipo_trabajo_id")->references("id")->on("tipo_trabajo");
+            $table->foreign("trabajo_realizar_id")->references("id")->on("trabajo_realizar");
             $table->foreign("nomina_tienda_id")->references("id")->on("nomina_tienda");
             $table->foreign("taller_id")->references("id")->on("talleres");
             $table->foreign("servicio_realizado_id")->references("id")->on("servicio_realizado");
