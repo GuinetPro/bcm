@@ -35,14 +35,11 @@ class TallerRequest extends FormRequest
         return [
             
             'nombre'        => 'required|max:200',
-            'Razon_Social'  => 'required|max:150',
+            'razon_social'  => 'required|max:150',
             'Codigo_Sap'    => 'required',
             'email'         => 'required',
-            'Direccion'     => 'required',
+            'direccion'     => 'required',
             'comuna_id'     => 'required',
-            'Email'         => 'required|email',
-            'Username'     => 'required',
-            'password'     => 'required',
         ];
     }
 }

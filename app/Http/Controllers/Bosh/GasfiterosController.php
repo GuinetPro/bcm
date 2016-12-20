@@ -34,11 +34,9 @@ class GasfiterosController extends Controller
     {
         $tallerList  = Taller::pluck('nombre', 'id')->prepend('Selecciona un Taller','');
         $gasfiter =  new Gasfitero;
-        $user =  new User;
 
         return view("bosh.gasfiteros.create",[
                                         "tallerList"  => $tallerList ,
-                                        "user" => $user,
                                         "gasfiter"    => $gasfiter,
  
                                         ]);
@@ -52,34 +50,27 @@ class GasfiterosController extends Controller
      */
     public function store(GasfiterRequest $request)
     {
+        $gasfiter                =  new Gasfitero;
+        $gasfiter->nombre        = $request->nombre;
+        $gasfiter->apellidos     = $request->apellidos;
+        $gasfiter->email         = $request->email;
+        $gasfiter->telefono      = $request->telefono;
+        $gasfiter->movil         = $request->movil;
+        $gasfiter->taller_id     = (int)$request->taller_id;
+        $gasfiter->region_id     = (int)$request->region_id;
+        $gasfiter->comuna_id     = (int)$request->comuna_id;
+        $gasfiter->rut           = $request->rut;
+        $gasfiter->direccion     = $request->direccion;
 
-        $user = new User;
-        $user->username = $request->Username;
-        $user->email    = $request->Email;
-        $user->rol_id   = Rol::find(3)->id;
-        $user->password = bcrypt($request->password);
 
-        if( $user->save() ){
-
-             $gasfiter              =  new Gasfitero;
-             $gasfiter->nombre        = $request->nombre;
-             $gasfiter->email         = $request->email;
-             $gasfiter->telefono      = $request->telefono;
-             $gasfiter->movil         = $request->movil;
-             $gasfiter->taller_id     = (int)$request->taller_id;
-             $gasfiter->user_id       = (int)$user->id;
-
-            if($gasfiter->save()){
-                \Flash::success('Gasfiter Creado con Exito.'); //<--FLASH MESSAGE
+        if($gasfiter->save()){
+            \Flash::success('Gasfiter Creado con Exito.'); //<--FLASH MESSAGE
                 return redirect("bosh/gasfiteros");
-            }else{
-                return view("bosh.gasfiteros.create",["taller" => $gasfiter,'user' => $user]);
-            }
-
         }else{
-            return view("bosh.gasfiteros.create",["taller" => $gasfiter,'user' => $user]);
+            return view("bosh.gasfiteros.create",["gasfiter" => $gasfiter]);
         }
 
+       
     }
 
     /**
@@ -103,11 +94,9 @@ class GasfiterosController extends Controller
     {
         $tallerList  = Taller::pluck('nombre', 'id')->prepend('Selecciona un Taller','');  
         $gasfiter    = Gasfitero::find((int)$id);
-        $user        = User::find($gasfiter->user_id);
 
         return view("bosh.gasfiteros.edit",[
-                                        "tallerList"      => $tallerList ,
-                                        "user" => $user,
+                                        "tallerList"  => $tallerList, 
                                         "gasfiter" => $gasfiter
                                         ]);
     }
@@ -121,19 +110,26 @@ class GasfiterosController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $gasfiter              = Gasfitero::find((int)$id);
-         $gasfiter->nombre        = $request->nombre;
-         $gasfiter->email         = $request->email;
-         $gasfiter->telefono      = $request->telefono;
-         $gasfiter->movil         = $request->movil;
-         $gasfiter->taller_id     = (int)$request->taller_id;
-         $gasfiter->user_id       = (int)$request->user_id;
+        $gasfiter              = Gasfitero::find((int)$id);
+        $gasfiter->nombre        = $request->nombre;
+        $gasfiter->apellidos     = $request->apellidos;
+        $gasfiter->email         = $request->email;
+        $gasfiter->telefono      = $request->telefono;
+        $gasfiter->movil         = $request->movil;
+        $gasfiter->taller_id     = (int)$request->taller_id;
+        $gasfiter->region_id     = (int)$request->region_id;
+        $gasfiter->comuna_id     = (int)$request->comuna_id;
+        $gasfiter->rut           = $request->rut;
+        $gasfiter->direccion     = $request->direccion;
+
+
+        
 
         if($gasfiter->save()){
             \Flash::success('Gasfiter Creado con Exito.'); //<--FLASH MESSAGE
-            return redirect("bosh.gasfiteros");
+            return redirect("bosh/gasfiteros");
         }else{
-            return view("bosh.gasfiteros.create",["gasfiter" => $gasfiter]);
+            return view("bosh.gasfiteros.edit",["gasfiter" => $gasfiter]);
         }
     }
 

@@ -39,9 +39,9 @@ class GasfiterRequest extends FormRequest
             'telefono'     => 'required',
             'movil'        => 'required',
             'taller_id'    => 'required',
-            'Username'     => 'required',
-            'Email'        => 'required|email',
-            'Password'     => 'required'
+            'region_id'    => 'required',
+            'comuna_id'    => 'required',
+            'rut'          => 'required'
         ];
     }
 }

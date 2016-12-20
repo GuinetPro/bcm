@@ -50,38 +50,40 @@ class TalleresController extends Controller
      */
     public function store(TallerRequest $request)
     {
-        $user = new User;
-        $user->username = $request->Username;
-        $user->email    = $request->Email;
-        $user->rol_id   = Rol::find(4)->id;
-        $user->password = bcrypt($request->password);
-
-        if( $user->save() ){
 
              $taller                = new Taller;
              $taller->nombre        = $request->nombre;
-             $taller->razon_social  = $request->Razon_Social;
-             $taller->codigo_sap    = $request->Codigo_Sap;
+             $taller->razon_social  = $request->razon_social;
+             $taller->codigo_sap    = $request->codigo_sap;
              $taller->email         = $request->email;
-             $taller->rut         =  $request->Rut;
-             $taller->telefono      = $request->Telefono;
-             $taller->movil         = $request->Movil;
-             $taller->direccion     = $request->Direccion;
-             $taller->decuento      = $request->Descuento;
-             $taller->comentario    = $request->Comentario;
-             $taller->comuna_id     = (int)$request->comuna_id;
-             $taller->user_id       = (int)$user->id;
-        
+             $taller->rut           = $request->rut;
+             $taller->telefono      = $request->telefono;
+             $taller->movil         = $request->movil;
+             $taller->direccion     = $request->direccion;
+             $taller->decuento      = $request->decuento;
+            // $taller->comentario    = $request->comentario;
+             $taller->comuna_id          = (int)$request->comuna_id;
+             $taller->region_id          = (int)$request->region_id;
+             
+             $taller->user_id            = 0;
+             $taller->descuento          = $request->descuento;
+             $taller->bonificacion       = $request->bonificacion;
+             $taller->kilometro          = $request->kilometro;
+             $taller->calefones          = $request->calefones;
+             $taller->termos_electricos  = $request->termos_electricos;
+             $taller->calderas           = $request->calderas;
+             $taller->aire_acondicionado = $request->aire_acondicionado;
+             $taller->estufas            = $request->estufas;
+             $taller->solar              = $request->solar;
+             $taller->eficiencia_energetica = $request->eficiencia_energetica;
+ 
             if($taller->save()){
                 \Flash::success('Taller Creado con Exito.'); //<--FLASH MESSAGE
                 return redirect("bosh/talleres");
             }else{
-                return view("bosh.talleres.create",["taller" => $taller,'user' => $user]);
+                return view("bosh.talleres.create",["taller" => $taller]);
             }
 
-        }else{
-            return view("bosh.talleres.create",["taller" => $taller,'user' => $user]);
-        }
     }
 
     /**

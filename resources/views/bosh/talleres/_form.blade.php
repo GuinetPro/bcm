@@ -10,12 +10,12 @@
 
   <div class="form-group">
     <label for="Razon Social">Razon Social</label>
-    {{ Form::text('Razon_Social',$taller->razon_social,['class' => 'form-control', 'placeholder' => 'Razon Social...'])  }}
+    {{ Form::text('razon_social',$taller->razon_social,['class' => 'form-control', 'placeholder' => 'Razon Social...'])  }}
   </div>
 
   <div class="form-group">
-    <label for="Rut">Rut</label>
-    {{ Form::text('Rut',$taller->rut,['class' => 'form-control', 'placeholder' => 'Rut...'])  }}
+    <label for="Rut">rut</label>
+    {{ Form::text('rut',$taller->rut,['class' => 'form-control', 'placeholder' => 'Rut...'])  }}
   </div>
 
   <div class="form-group">
@@ -39,8 +39,8 @@
   </div>
 
   <div class="form-group">
-    <label for="region">Region</label>
-        <select  type="text" id="region" name="region" class="form-control" ng-model="region" ng-change="loadComuna(region)">          
+    <label for="region_id">Region</label>
+        <select  type="text" id="region_id" name="region_id" class="form-control" ng-model="region" ng-change="loadComuna(region)">          
             <option ng-repeat="r in regiones" value="<% r %>"><% r.codigo %> <% r.nombre %></option>
         </select>  
  </div>
@@ -54,20 +54,8 @@
 
   <div class="form-group">
      <label for="Direccion">Direccion</label>
-    {{ Form::text('Direccion',$taller->direccion,['class' => 'form-control', 'placeholder' => 'Direccion...'])  }}
+    {{ Form::text('direccion',$taller->direccion,['class' => 'form-control', 'placeholder' => 'Direccion...'])  }}
   </div>
-
-    <div class="form-group">
-    <label for="Descuento">Descuento</label>
-    {{ Form::text('Descuento',$taller->decuento,['class' => 'form-control', 'placeholder' => 'Descuento...'])  }}
-  </div>
-
-  <div class="form-group">
-    <label for="Comentario">Comentario</label>
-    {{ Form::textarea('Comentario',$taller->comentario,['class' => 'form-control', 'placeholder' => 'Comentario...'])  }}
-  </div>
-
-
 
 
 
@@ -77,12 +65,12 @@
 
 
   <div class="form-group">
-    <label for="descuento" class="col-md-4 control-label">Descuento Repuestos </label>
-    {{ Form::number('descuento',$taller->descuento,['class' => 'form-control', 'placeholder' => ''])  }}
+    <label for="decuento" class="col-md-4 control-label">Descuento Repuestos </label>
+    {{ Form::number('decuento',$taller->decuento,['class' => 'form-control', 'placeholder' => ''])  }}
   </div>
 
   <div class="form-group">
-    <label for="bonificacion" class="col-md-4 control-label">bBnificacion de Repuesto  </label>
+    <label for="bonificacion" class="col-md-4 control-label">Bonificacion de Repuesto  </label>
     {{ Form::number('bonificacion',$taller->bonificacion,['class' => 'form-control', 'placeholder' => ''])  }}
   </div>
 
@@ -133,6 +121,12 @@
     {{ Form::text('eficiencia_energetica',$taller->eficiencia_energetica,['class' => 'form-control', 'placeholder' => ''])  }}
   </div> 
 
+
+
+  <div class="form-group text-right">
+    <a href="{{url('/bosh/talleres')}}"> Regresar al listado de Talleres </a>
+    <input type="submit" value="Guardar" class="btn btn-success btn-lg">
+  </div>
 
 
 
