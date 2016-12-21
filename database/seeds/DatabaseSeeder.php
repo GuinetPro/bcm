@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
        $this->call(LitrajeableSeeder::class);
        $this->call(ModeloTableSeeder::class);
        $this->call(TiroTableSeeder::class);
-
+//
          //
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Bosh;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\Taller;
 use App\Model\Rol;
+use App\Model\Tecnico;
 use App\Http\Requests\UserRequest;
 
 class UsuariosController extends Controller
@@ -17,7 +19,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-         $usuarios = User::all();
+         $usuarios = User::where('id', '>', 0)->get();
     
          return view("bosh.usuarios.index",["usuarios" => $usuarios]);
     }
@@ -31,10 +33,12 @@ class UsuariosController extends Controller
     {
         $roles = Rol::pluck('nombre', 'id')->prepend('Selecciona un Rol','');
         $user =  new User;
+                $tallerList  = Taller::pluck('nombre', 'id')->prepend('Selecciona un Taller','');  
 
         return view("bosh.usuarios.create",[
                                         "user"      => $user,
-                                        "roles" => $roles
+                                        "roles" => $roles,
+                                        'tallerList' => $tallerList
                                         ]);
     }
 
@@ -57,11 +61,38 @@ class UsuariosController extends Controller
         $user->password         = bcrypt($request->remember_token);
 
         if( $user->save() ){
-            \Flash::success('Usuario Creado con Exito.'); //<--FLASH MESSAGE
+
+                  //Si es lider taller guardamos la relacion
+            if( $request->rol_id == 4 ){
+
+                $taller = Taller::find($request->taller_id);
+                $taller->user_id = $user->id;
+                $taller->save();
+            }
+
+            //si es tecnico puede tener talleres asociados
+             //debemos crear el tecnico
+            if( $request->rol_id == 3 ){
+
+                $tecnico = new Tecnico;            
+                $tecnico->nombre     = $request->username;
+                $tecnico->email      = $request->email;
+                $tecnico->telefono   = "";
+                $tecnico->movil      = "";
+                $tecnico->taller_id  = $request->taller_id;
+                $tecnico->user_id    = $user->id;
+                $tecnico->save();
+
+            }  
+
+             \Flash::success('Usuario Creado con Exito.'); //<--FLASH MESSAGE
                 return redirect("bosh/usuarios");
         }else{
             return view("bosh.usuarios.create",["taller" => $taller,'user' => $user]);
         }
+
+           
+        
     }
 
     /**
@@ -86,10 +117,12 @@ class UsuariosController extends Controller
     {
         $roles = Rol::pluck('nombre', 'id')->prepend('Selecciona un Rol','');
         $user        = User::find($id);
+        $tallerList  = Taller::pluck('nombre', 'id')->prepend('Selecciona un Taller','');  
 
         return view("bosh.usuarios.edit",[
                                         "user"  => $user,
-                                        "roles" => $roles
+                                        "roles" => $roles,
+                                        'tallerList' => $tallerList
                                         ]);
     }
 
@@ -111,6 +144,31 @@ class UsuariosController extends Controller
         $user->rol_id           = Rol::find($request->rol_id)->id;
         $user->password         = bcrypt($request->password);
         $user->password         = bcrypt($request->remember_token);
+
+
+        //Si es lider taller guardamos la relacion
+        if( $request->rol_id == 4 ){
+
+            $taller = Taller::find($request->taller_id);
+            $taller->user_id = $user->id;
+            $taller->save();
+        }
+
+        //si es tecnico puede tener talleres asociados
+        //debemos crear el tecnico
+        if( $request->rol_id == 3 ){
+
+            $tecnico = new Tecnico;            
+            $tecnico->nombre     = $request->username;
+            $tecnico->email      = $request->email;
+            $tecnico->telefono   = "";
+            $tecnico->movil      = "";
+            $tecnico->taller_id  = $request->taller_id;
+            $tecnico->user_id    = $user->id;
+            $tecnico->save();
+
+        }
+
 
         if( $user->save() ){
             \Flash::success('Usuario Creado con Exito.'); //<--FLASH MESSAGE

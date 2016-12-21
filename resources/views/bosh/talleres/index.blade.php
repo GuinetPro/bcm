@@ -24,8 +24,11 @@
           <td>Email</td>
           <td>Telefono</td>
           <td>Movil</td>
-          <td>Fecha Creacion</td>  
-          <td>Gasfiter Asociados</td>      
+          <td>Direccion</td>   
+          <td>Comuna</td>
+          <td>Region</td>
+          <td>Fecha Creacion</td> 
+          <td></td>  
         </tr>
       </thead>
       <tbody>
@@ -35,9 +38,11 @@
             <td>{{ $t->nombre }}</td>
             <td>{{ $t->email }}</td>
             <td>{{ $t->telefono }}</td>
-            <td>{{ $t->movil }}</td>
+            <td>{{ $t->movil }}</td>           
+            <td>{{ $t->direccion }}</td>
+            <td>{{ $t->comuna->nombre }}</td>
+            <td>{{ $t->region->nombre }}</td>
             <td>{{ $t->created_at }}</td>
-             <td> @foreach  ($t->gasfiteros  as $g) {{ $g->nombre  }} @endforeach </td>
             <td> 
               <a class="btn btn-warning" href="{{url('/bosh/talleres/'.$t->id.'/edit')}}">
                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

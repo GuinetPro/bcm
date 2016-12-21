@@ -9,6 +9,7 @@ use App\Model\Telefono;
 use App\Model\Cliente;
 use App\Model\Modelo;
 use App\Model\ProductoCliente;
+use App\Model\Taller;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,3 +116,35 @@ Route::get('/modelos/{id}', function ($id) {
 });
 
 
+Route::get('/taller/{id}', function ($id) {
+    $taller = Taller::find($id);
+    //$taller->coberturas;
+
+    $coberturas = array();
+
+    foreach ($taller->coberturas as $c ) {
+      
+      $comuna =  Comuna::find($c->comuna_id); 
+
+
+      $coberturas[] =  array(
+            "id"           => $c->id, 
+            "comentario"   => $c->comentario, 
+            "comuna_id"    => $c->comuna_id, 
+            "taller_id"    => $c->taller_id, 
+            "kilometro"    => $c->kilometro, 
+            "valor_visita" => $c->valor_visita, 
+            "tipo_sat"     => $c->tipo_sat, 
+            "created_at"   => $c->created_at, 
+            "updated_at"   => $c->updated_at,
+            "region"       => Region::find($comuna->region_id),
+            "comuna"       => $comuna, 
+      );
+
+    }
+
+    $taller->com = $coberturas;
+    $taller->comuna = Comuna::find($taller->comuna_id);
+   
+    return response()->json($taller);
+});

@@ -1,5 +1,5 @@
 {!! Form::open(['url' => $url, 'method' => $method ]) !!}
-  
+<input  type="hidden" value="{{ $taller->id }}" id="taller_id">
 <div class="row">
     <div class="col-md-6">
         <div class="widget stats-widget">
@@ -46,14 +46,15 @@
 
             <div class="form-group">
               <label for="region_id">Region</label>
-                  <select  type="text" id="region_id" name="region_id" class="form-control" ng-model="region" ng-change="loadComuna(region)">          
-                      <option ng-repeat="r in regiones" value="<% r %>"><% r.codigo %> <% r.nombre %></option>
-                  </select>  
+                  {!! Form::select('region_id', $regionList, $taller->region_id, ['id' => 'region_id', 'class' => 'form-control','ng-init'=>"region='".$taller->region_id."'",'ng-model'=>'region','ng-change'=>'loadComuna(region)' ] ) !!}
+
+
            </div>
 
             <div class="form-group">
               <label for="comuna_id">Comuna</label>
               <select  id="comuna" type="text" class="form-control" name="comuna_id" ng-model="comuna">
+                 <option ng-if="taller.comuna.id" ng-selected="true" value="<% taller.comuna.id %>"><% taller.comuna.nombre %></option>
                  <option ng-repeat="c in comunasSelector" value="<% c.id %>"><% c.nombre %></option>
               </select>
             </div>
@@ -75,8 +76,8 @@
           </header>
           <div class="widget-body clearfix">
               <div class="form-group">
-                <label for="decuento" class="col-md-4 control-label">Descuento Repuestos </label>
-                {{ Form::number('decuento',$taller->decuento,['class' => 'form-control', 'placeholder' => ''])  }}
+                <label for="descuento" class="col-md-4 control-label">Descuento Repuestos </label>
+                {{ Form::number('descuento',$taller->descuento,['class' => 'form-control', 'placeholder' => ''])  }}
               </div>
 
               <div class="form-group">
@@ -174,7 +175,7 @@
                       <td><% co.respuesta %></td>
                       <td><% co.kilometro %></td>
                       <td>
-                        <button class="btn btn-danger">eliminar</button>
+                        <button class="btn btn-danger" ng-click="deleteCobertura(co)">eliminar</button>
                       </td>
                       <input type="hidden" name="co[tipo_sat][]" value="<% co.tipo_sat %>">
                       <input type="hidden" name="co[region][]" value="<% co.region.id %>">
@@ -248,7 +249,12 @@
             
           <div class="form-group">
               <label for="respuesta" class="col-md-4 control-label">Respuesta</label>
-              <input type="text" id="respuesta" class="form-control" ng-model="cobertura.respuesta">
+              <select id="respuesta" ng-model="cobertura.respuesta" class="form-control">
+                  <option value=""></option>
+                  <option value="24 hrs">24 hrs</option>
+                  <option value="48 hrs">48 hrs</option>
+                  <option value="72 hrs">72 hrs</option>
+              </select>
            </div>
 
         </form>

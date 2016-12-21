@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Taller;
 use App\Model\Comuna;
+use App\Model\Region;
 use App\Model\Categoria;
 use App\Model\User;
 use App\Model\Rol;
@@ -32,13 +33,12 @@ class TalleresController extends Controller
      */
     public function create()
     {
-        $comunaList = Comuna::pluck('nombre', 'id')->prepend('Selecciona una Comuna','');
+        $regionList = Region::pluck('nombre', 'id')->prepend('Selecciona una Region','');
         $taller =  new Taller;
 
         return view("bosh.talleres.create",[
                                         "taller"      => $taller,
-                                        "comunaList" => $comunaList,
-                                        'user' =>      new User
+                                        "regionList" => $regionList
                                         ]);
     }
 
@@ -89,7 +89,7 @@ class TalleresController extends Controller
     {
 
         $taller   = Taller::find($id);
-        $user   = User::find($taller->user_id);
+        $regionList = Region::pluck('nombre', 'id')->prepend('Selecciona una Region','');
 
         if( !$taller ){
              \Flash::error('El Taller que busca no existe.');
@@ -101,8 +101,7 @@ class TalleresController extends Controller
 
         return view("bosh.talleres.edit",[
                                         "taller"      => $taller,
-                                        "comunaList" => $comunaList,
-                                        'user' =>  $user
+                                        "regionList" => $regionList
                                         ]);
     }
 
@@ -113,7 +112,7 @@ class TalleresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TallerRequest $request, $id)
     {
         $taller   = Taller::find($id);
 
@@ -121,21 +120,29 @@ class TalleresController extends Controller
              \Flash::error('El Taller que busca no existe.');
             return redirect("/productos");
         }
-         $taller->nombre  = $request->nombre;
-         $taller->razon_social  = $request->razon_social;
-         $taller->codigo_sap  = $request->codigo_sap;
-         $taller->email  = $request->email;
-         $taller->telefono  = $request->telefono;
-         $taller->movil  = $request->movil;
-         $taller->direccion  = $request->direccion;
-         $taller->decuento  = $request->decuento;
-         $taller->comentario  = $request->comentario;
-         $taller->comuna_id = (int)$request->comuna_id;
-         $taller->user_id  = (int)$request->user_id;
+          $taller->nombre  = $request->nombre;
+          $taller->razon_social  = $request->razon_social;
+          $taller->codigo_sap  = $request->Codigo_Sap;
+          $taller->email      = $request->email;
+          $taller->telefono   = $request->telefono;
+          $taller->movil      = $request->movil;
+          $taller->direccion  = $request->direccion;
+          $taller->comuna_id  = (int)$request->comuna_id;
+          $taller->region_id  = (int)$request->region_id;
+          $taller->descuento  = $request->descuento;
+          $taller->bonificacion = $request->bonificacion;
+          $taller->kilometro = $request->kilometro;
+          $taller->calefones = $request->calefones;
+          $taller->termos_electricos = $request->termos_electricos;
+          $taller->calderas = $request->calderas;
+          $taller->aire_acondicionado = $request->aire_acondicionado;
+          $taller->estufas = $request->estufas;
+          $taller->solar   = $request->solar;
+          $taller->eficiencia_energetica = $request->eficiencia_energetica;
 
         if($taller->save()){
             \Flash::success('Taller Modificado con Exito.'); //<--FLASH MESSAGE
-            return redirect("bosh.talleres");
+            return redirect("bosh/talleres");
         }else{
             return view("bosh.talleres.create",["taller" => $taller]);
         }

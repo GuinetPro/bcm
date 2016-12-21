@@ -21,6 +21,17 @@ class Taller extends Model
         return $this->belongsTo('App\Model\Comuna');
     }
 
+
+     /** 
+     * Relaciones
+     * @return [type] [description]
+     */
+     public function region()
+    {
+        return $this->belongsTo('App\Model\Region');
+    }
+
+
     /** 
      * Relaciones
      * @return [type] [description]
@@ -36,6 +47,10 @@ class Taller extends Model
     }
 
 
+    public function coberturas(){
+        return $this->hasMany('App\Model\Cobertura');
+    }
+
     public function tecnicos(){
         return $this->hasMany('App\Model\Tecnico');
     }
@@ -45,6 +60,7 @@ class Taller extends Model
 
             
         $coberturas   = $response->co;
+         $region =  json_decode($response->region_id);
 
 
         // Start transaction!
@@ -53,16 +69,15 @@ class Taller extends Model
             try {
                 $taller = Taller::create([
                     'nombre' => $response->nombre,
-                    'razon_social' => $response->apellidoPaterno,
-                    'codigo_sap' => $response->apellidoMaterno,
+                    'razon_social' => $response->razon_social,
+                    'codigo_sap' => $response->Codigo_Sap,
                     'email' => $response->email,
                     'rut' => $response->rut,
                     'telefono' => $response->telefono,
                      "movil"  => $response->movil,
                      "direccion"  => $response->direccion,
-                     "decuento"  => $response->decuento,
                      "comuna_id"  => $response->comuna_id,
-                     "region_id"  => $response->region_id,
+                     "region_id"  => $region->id,
                      "user_id"          => User::find(0)->id,
                      "descuento"   => $response->descuento,
                      "bonificacion"  => $response->bonificacion,

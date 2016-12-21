@@ -4,7 +4,7 @@
 
     <div class="row">
      <div class="col-xs-12 col-sm-6 col-md-8">
-        <h1>Usuarios</h1> 
+        <h1>Manejo de Usuarios</h1> 
       </div>
       <div class="col-xs-6 col-md-4"> 
           <a class='btn btn-info' href="{{url('/bosh/usuarios/create')}}">Agregar Usuario</a>
@@ -24,7 +24,8 @@
           <td>Email</td>
           <td>Telefono</td>
           <td>Perfil</td>
-          <td>Fecha Creacion</td>      
+          <td>Fecha Creacion</td> 
+          <td></td>     
         </tr>
       </thead>
       <tbody>
@@ -40,9 +41,7 @@
               <a class="btn btn-warning" href="{{url('/bosh/usuarios/'.$u->id.'/edit')}}">
                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </a>
-   
             </td>
-
           </tr>
         @endforeach
       </tbody>

@@ -326,7 +326,7 @@ app.controller("ClienteShowCtrl",function($scope,$http,$timeout,Modelo,Producto,
 		        }
 		    });
 
-console.log($("form[name=crearProductocliente]").serialize());
+
 			$.ajax({
 				   
 				   url: Base+'/productoCliente/'+$('#cliente_id').val(),			   
@@ -355,7 +355,15 @@ app.controller("TallerCtrl",function($scope,$http,$timeout,Region,Comuna){
 	   $scope.regiones     = [];
 	   $scope.comunas      = [];
 	   $scope.coberturas   = [];
-	   $scope.regiones2     = [];
+	   $scope.regiones2    = [];
+	   $scope.taller 	   = [];
+	   $scope.taller_id    = document.getElementById("taller_id").value;
+
+	   $http.get(Base+'/taller/'+$scope.taller_id)
+          .success(function (data) {
+            $scope.taller = data;
+            $scope.coberturas = data.com;
+        });	
 
 	   $scope.cobertura   =  {
 	   	   region : [],
@@ -381,12 +389,12 @@ app.controller("TallerCtrl",function($scope,$http,$timeout,Region,Comuna){
 
 
  	   $scope.loadComuna = function(region){
-   		
-		 var regionCurrent =  jQuery.parseJSON(region);
+   	
+		 //var regionCurrent =  jQuery.parseJSON(region);
 
  	   	 $scope.comunasSelector      =   $scope.comunas.filter(function(cm) {
 
-    		return cm.region_id == regionCurrent.id; 
+    		return cm.region_id == region; 
 		 })
  	   	 	
  	   }   
@@ -427,5 +435,53 @@ app.controller("TallerCtrl",function($scope,$http,$timeout,Region,Comuna){
 
  	   		$('#myModal').modal('hide');
  	   } 
+
+ 	   $scope.deleteCobertura = function(co){
+ 	   		$scope.coberturas.splice($scope.coberturas.indexOf(co),1);
+ 	   }
 });
 
+
+app.controller("UserCtrl",function($scope,$http,$timeout){
+
+	$scope.talleres = [];
+	$scope.rol_tecnico = false;
+
+	$scope.relacionarTaller = function(event){
+		
+		var error = true;	
+
+		if($("#taller_asociado option:selected").val() ==  "" ){
+			alert("Deebs escoger un Taller");
+		    return;
+		} 
+
+		$scope.talleres.map(function(val) {
+				   
+			if( val.id == $("#taller_asociado option:selected").val()  ){
+				alert("Este Taller ya esta Asociado");
+		     	error = false;
+		     }
+
+
+					
+		});		
+
+		if( error ){
+			$scope.talleres.push({nombre:$("#taller_asociado option:selected").text(),id:$("#taller_asociado option:selected").val()});
+		}
+	}
+
+
+	$scope.relacionarRol = function(){
+			console.log($scope.rol_id);
+		if( $scope.rol_id != 3 ){
+			$scope.rol_tecnico = true;
+		}else{
+			$scope.rol_tecnico = false;
+		}
+	}	
+
+
+
+});
