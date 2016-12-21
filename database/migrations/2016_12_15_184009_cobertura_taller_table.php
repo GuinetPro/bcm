@@ -32,6 +32,8 @@ class CoberturaTallerTable extends Migration
             
             $table->integer('tipo_sat');
 
+            $table->string('respuesta');
+
             $table->timestamps();
         });
     }

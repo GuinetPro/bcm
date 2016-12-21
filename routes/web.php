@@ -51,7 +51,7 @@ use App\Model\Repuesto;
 
 Route::group(['middleware' => 'auth'], function () {
 
-     Route::get('/', 'ClienteController@index');
+     Route::get('/', 'HomeController@index');
      Route::resource('productoCliente','ProductoClienteController');
      Route::resource('clientes','ClienteController');
      Route::resource('modelos','ModelosController');
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 
 Route::get('/imagenes/{img}',function($img){

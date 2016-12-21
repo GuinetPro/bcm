@@ -354,6 +354,20 @@ app.controller("TallerCtrl",function($scope,$http,$timeout,Region,Comuna){
 
 	   $scope.regiones     = [];
 	   $scope.comunas      = [];
+	   $scope.coberturas   = [];
+	   $scope.regiones2     = [];
+
+	   $scope.cobertura   =  {
+	   	   region : [],
+           comuna : [],      
+           kilometro : "",          
+           valor_visita : "",           
+           tipo_sat  :   "",
+           respuesta : "",
+           id: 0
+	   };
+                 
+
 
 	   Region.all().then(function (data) {
 		   $scope.regiones = data;
@@ -377,5 +391,41 @@ app.controller("TallerCtrl",function($scope,$http,$timeout,Region,Comuna){
  	   	 	
  	   }   
 
+
+
+ 	   $scope.loadComuna2 = function(region){
+   		
+		 var regionCurrent =  jQuery.parseJSON(region);
+
+ 	   	 $scope.comunasSelector2      =   $scope.comunas.filter(function(cm) {
+    		return cm.region_id == regionCurrent.id; 
+		 })
+ 	   	 	
+ 	   }  
+
+ 	   $scope.openModalCobertura= function(event){
+ 	   		event.preventDefault();
+ 	   		$('#myModal').modal('show');
+ 	   } 
+
+ 	   $scope.saveCobertura= function(){
+ 	   		
+ 	   		$scope.cobertura.region =  jQuery.parseJSON($scope.cobertura.region);
+ 	   		$scope.cobertura.comuna =  jQuery.parseJSON($scope.cobertura.comuna);
+ 	   		$scope.coberturas.push($scope.cobertura);
+
+ 	   	   $scope.cobertura   =  {
+	   	   		region : [],
+           		comuna : [],      
+           		kilometro : "",          
+           		valor_visita : "",           
+           		tipo_sat  :   "",
+           		respuesta : "",
+           		id: 0
+	   		};
+
+
+ 	   		$('#myModal').modal('hide');
+ 	   } 
 });
 

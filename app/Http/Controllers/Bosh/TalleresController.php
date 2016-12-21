@@ -51,38 +51,16 @@ class TalleresController extends Controller
     public function store(TallerRequest $request)
     {
 
-             $taller                = new Taller;
-             $taller->nombre        = $request->nombre;
-             $taller->razon_social  = $request->razon_social;
-             $taller->codigo_sap    = $request->codigo_sap;
-             $taller->email         = $request->email;
-             $taller->rut           = $request->rut;
-             $taller->telefono      = $request->telefono;
-             $taller->movil         = $request->movil;
-             $taller->direccion     = $request->direccion;
-             $taller->decuento      = $request->decuento;
-            // $taller->comentario    = $request->comentario;
-             $taller->comuna_id          = (int)$request->comuna_id;
-             $taller->region_id          = (int)$request->region_id;
-             
-             $taller->user_id            = 0;
-             $taller->descuento          = $request->descuento;
-             $taller->bonificacion       = $request->bonificacion;
-             $taller->kilometro          = $request->kilometro;
-             $taller->calefones          = $request->calefones;
-             $taller->termos_electricos  = $request->termos_electricos;
-             $taller->calderas           = $request->calderas;
-             $taller->aire_acondicionado = $request->aire_acondicionado;
-             $taller->estufas            = $request->estufas;
-             $taller->solar              = $request->solar;
-             $taller->eficiencia_energetica = $request->eficiencia_energetica;
+        $taller    = new Taller;
+        
  
-            if($taller->save()){
-                \Flash::success('Taller Creado con Exito.'); //<--FLASH MESSAGE
-                return redirect("bosh/talleres");
-            }else{
-                return view("bosh.talleres.create",["taller" => $taller]);
-            }
+        if( Taller::saveData($request) ){
+
+            \Flash::success('Taller Creado con Exito.'); //<--FLASH MESSAGE
+            return redirect("bosh/talleres");
+        }else{
+            return view("bosh.talleres.create",["taller" => $taller]);
+        }
 
     }
 
