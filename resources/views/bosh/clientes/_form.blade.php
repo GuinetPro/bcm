@@ -1,27 +1,54 @@
 {!! Form::open(['url' => $url, 'method' => $method ]) !!}
 
   <div class="form-group">
+    <label for="nombre">Nombre</label>
     {{ Form::text('nombre',$cliente->nombre,['class' => 'form-control', 'placeholder' => 'Nombre...'])  }}
   </div>
 
   <div class="form-group">
+    <label for="apellidoPaterno">Apellido Paterno</label>
     {{ Form::text('apellidoPaterno',$cliente->apellidoPaterno,['class' => 'form-control', 'placeholder' => 'Apellido Paterno...'])  }}
   </div>
 
 
-    <div class="form-group">
+  <div class="form-group">
+    <label for="apellidoMaterno">Apellido Materno</label>
     {{ Form::text('apellidoMaterno',$cliente->apellidoMaterno,['class' => 'form-control', 'placeholder' => 'Apellido Materno...'])  }}
   </div>
 
 
   <div class="form-group">
+    <label for="rut">Rut</label>
     {{ Form::text('rut',$cliente->rut,['class' => 'form-control', 'placeholder' => 'Rut de tu cliente'])  }}
   </div>
 
   <div class="form-group">
+   <label for="email">Email</label>
     {{ Form::email('email',$cliente->email,['class' => 'form-control', 'placeholder' => 'ejemplo@hotmail.com'])  }}
   </div>
 
+
+  <div class="form-group">
+    <label for="celular">Telefono Celular</label>
+    {{ Form::tel('celular',$cliente->celular,['class' => 'form-control phone', 'placeholder' => 'Celular'])  }}
+  </div>
+
+
+  <div class="form-group">
+    <label for="red_fija">Telefono Red Fija</label>
+    {{ Form::tel('red_fija',$cliente->red_fija,['class' => 'form-control phone', 'placeholder' => 'Red Fija'])  }}
+  </div>
+
+  <div class="form-group">
+    <label for="trabajo">Telefono Trabajo</label>
+    {{ Form::tel('trabajo',$cliente->trabajo,['class' => 'form-control phone', 'placeholder' => 'trabajo'])  }}
+  </div>
+ 
+  <div class="form-group">
+    <label for="recados">Telefono Recados</label>
+    {{ Form::tel('recados',$cliente->recados,['class' => 'form-control phone', 'placeholder' => 'trabajo'])  }}
+  </div>
+ 
 
   <div class="form-group">
 
@@ -34,7 +61,7 @@
         
         <div class="row"  id="div_form_direccion">
             <!-- Modal Direccion -->
-            @include('direccion._form',[])
+            @include('partials.direccion._form',[])
         </div>
 
         <table class='table'>
@@ -54,6 +81,9 @@
               <input type="hidden" name="dir[id][]" value="<% dir.id %>">
               <input type="hidden" name="dir[latitud][]" value="<% dir.latitud %>">
               <input type="hidden" name="dir[longitud][]" value="<% dir.longitud %>">
+              <input type="hidden" name="dir[block][]" value="<% dir.block %>">
+              <input type="hidden" name="dir[tipo_vivienda][]" value="<% dir.tipo_vivienda %>">
+              <input type="hidden" name="dir[sector][]" value="<% dir.sector %>">
 
               <span class='btn btn-warning'><i class="fa fa-pencil" aria-hidden="true"></i></span>
               <span  ng-click="deleteDir(dir)" class='btn btn-danger'><i class="fa fa-trash" aria-hidden="true"></i></span>
@@ -65,7 +95,7 @@
     </div>
 
   </div>
-
+<?php /*?>
   <div class="form-group">
 
     <div class="panel panel-default">
@@ -77,7 +107,7 @@
           <div class="row"  id="div_form_telefono">
             <div class="col-md-12">
                 <!-- Modal Telefono -->
-                @include('telefono._form',[])
+                @include('partials.telefono._form',[])
             </div>
           </div>
 
@@ -102,18 +132,18 @@
       </div>
     </div>
 
-  </div>
+  </div><?php 
 
   <div class="form-group">
     {{ Form::textarea('comentario',$cliente->comentario,['class' => 'form-control', 'placeholder' => 'Describe tu cliente...'])  }}
   </div>
-  
+  */ ?>
   <div class="form-group text-right">
-    <a href="{{url('/clientes')}}"> Regresar al listado de Clientes </a>
+    <a href="{{url('/bosh/clientes')}}"> Regresar al listado de Clientes </a>
     <input type="submit" value="Guardar" class="btn btn-success btn-lg">
   </div>
 
 {!! Form::close() !!}
 
 
-@include('direccion._script',[])
+@include('partials.direccion._script',[])

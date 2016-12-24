@@ -214,11 +214,11 @@
               <li><a href="{{url('/bosh/gasfiteros')}}"><span class="menu-text">Estadisticas</span></a></li>
               <li><a href="{{url('/bosh/gasfiteros')}}"><span class="menu-text">Validar Garantias</span></a></li>
               <li><a href="{{url('/bosh/usuarios')}}"><span class="menu-text">Usuarios</span></a></li>
-              <li><a href="{{url('/clientes')}}"><span class="menu-text">Clientes</span></a></li>
+              <li><a href="{{url('/bosh/clientes')}}"><span class="menu-text">Clientes</span></a></li>
               <li><a href="{{url('/bosh/gasfiteros')}}"><span class="menu-text"> Lista de Precios</span></a></li>
               <li><a href="{{url('/bosh/gasfiteros')}}"><span class="menu-text">Actualizar Lista de Precios</span></a></li>
               <li><a href="{{url('/bosh/talleres')}}"><span class="menu-text">Talleres</span></a></li>
-              <li><a href="{{url('/productos')}}"><span class="menu-text">Productos</span></a></li>
+              <li><a href="{{url('/bosh/productos')}}"><span class="menu-text">Productos</span></a></li>
               <li><a href="{{url('/bosh/gasfiteros')}}"><span class="menu-text">Repuestos</span></a></li>
 
           </ul>

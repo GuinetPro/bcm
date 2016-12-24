@@ -4,6 +4,6 @@
   <div class="container white">
     <h1>Nuevo Producto</h1>
     <!-- Formulario -->
-    @include('productos._form',['producto' => $producto, 'url' => '/productos', 'method' => 'POST'])
+    @include('bosh.productos._form',['producto' => $producto, 'url' => '/bosh/productos', 'method' => 'POST'])
   </div>
 @endsection

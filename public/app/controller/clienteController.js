@@ -446,6 +446,15 @@ app.controller("UserCtrl",function($scope,$http,$timeout){
 
 	$scope.talleres = [];
 	$scope.rol_tecnico = false;
+	$scope.user = [];
+    $scope.user_id    = document.getElementById("user_id").value;
+
+
+	$http.get(Base+'/user/'+$scope.user_id)
+          .success(function (data) {
+            $scope.user = data;
+            $scope.talleres = data.talleresAsociados;
+     });	
 
 	$scope.relacionarTaller = function(event){
 		
@@ -472,6 +481,38 @@ app.controller("UserCtrl",function($scope,$http,$timeout){
 		}
 	}
 
+
+ 	$scope.eliminarTaller = function(taller){
+
+
+ 		bootbox.confirm({
+		    message: "Estas seguro de querer eliminar esta Relacion?",
+		    buttons: {
+		        confirm: {
+		            label: 'Si',
+		            className: 'btn-primary'
+		        },
+		        cancel: {
+		            label: 'No',
+		            className: 'btn-info'
+		        }
+		    },
+		    callback: function (result) {
+		    	if(result){
+			    	$.ajax({
+					    url: Base+'/tecnico/'+taller.id,
+					    type: 'DELETE',
+					    success: function(result) {
+					        $scope.talleres.splice($scope.talleres.indexOf(taller),1);
+					    }
+					});    		
+		    	}
+		    }
+		});
+
+
+ 	   	
+ 	}
 
 	$scope.relacionarRol = function(){
 			console.log($scope.rol_id);

@@ -7,8 +7,8 @@
         <h1>Productos</h1> 
       </div>
       <div class="col-xs-6 col-md-4"> 
-          <a class='btn btn-info' href="{{url('/productos/create')}}">Agregar Producto</a>
-          <a class='btn btn-success' href="{{url('/export/productos')}}">Exportar a Excel</a>
+          <a class='btn btn-info' href="{{url('/bosh/productos/create')}}">Agregar Producto</a>
+          <a class='btn btn-success' href="{{url('/bosh/export/productos')}}">Exportar a Excel</a>
       </div>
 
     </div>

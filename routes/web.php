@@ -40,8 +40,9 @@ use App\Model\Repuesto;
      Route::resource('talleres','Bosh\TalleresController');
      Route::resource('tiros','Bosh\TirosController');
      Route::resource('tipogas','Bosh\TipogasController');
-     Route::resource('clientes','Bosh\ClienteController');
+     Route::resource('clientes','Bosh\ClientesController');
      Route::resource('usuarios','Bosh\UsuariosController');
+     Route::resource('productos','Bosh\ProductosController');
      Route::get('/','Bosh\HomeController@index');   
 
  });

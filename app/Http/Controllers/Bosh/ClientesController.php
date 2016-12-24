@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Bosh;
+
+
+use App\Http\Controllers\Controller;
 use App\Model\Cliente;
 use App\Model\Region;
 use App\Model\Telefono;
@@ -13,7 +16,7 @@ use  App\Http\Requests\ClienteRequest;
 use App\Model\TipoAtencion;
 use App\Model\Visita;
 
-class ClienteController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +27,7 @@ class ClienteController extends Controller
     {
          $clientes = Cliente::all();
     
-         return view("clientes.index",["clientes" => $clientes]);
+         return view("bosh.clientes.index",["clientes" => $clientes]);
     }
 
     /**
@@ -36,7 +39,7 @@ class ClienteController extends Controller
     {
         $cliente  = new Cliente;
         $regiones  =  Region::all();
-        return view("clientes.create",["cliente" => $cliente]);
+        return view("bosh.clientes.create",["cliente" => $cliente]);
     }
 
     /**
@@ -54,7 +57,7 @@ class ClienteController extends Controller
              \Flash::success('Cliente Creado con Exito.');
             return redirect("/clientes");
         }else{
-            return view("clientes.create",["cliente" => $cliente]);
+            return view("bosh.clientes.create",["cliente" => $cliente]);
         }
     }
 
@@ -79,7 +82,7 @@ class ClienteController extends Controller
              \Flash::error('El Cliente que buscano existe.');
             return redirect("/clientes");
         }else{
-            return view("clientes.show",["cliente" => $cliente,
+            return view("bosh.clientes.show",["cliente" => $cliente,
                                          "categoriaList" => $categorias,
                                           "marcaList"    => $marca,
                                            "visitas"     => $visitas 
@@ -103,7 +106,7 @@ class ClienteController extends Controller
              \Flash::error('El Cliente que busca no existe.');
             return redirect("/clientes");
         }else{
-            return view("clientes.edit",["cliente" => $cliente]);
+            return view("bosh.clientes.edit",["cliente" => $cliente]);
         }      
     }
 
@@ -134,7 +137,7 @@ class ClienteController extends Controller
             return redirect("/clientes");
             
         }else{
-            return view("clientes.edit",["cliente" => $cliente]);
+            return view("bosh.clientes.edit",["cliente" => $cliente]);
         }
     }
 

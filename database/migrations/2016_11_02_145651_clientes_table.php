@@ -19,6 +19,10 @@ class ClientesTable extends Migration
             $table->string('rut');
             $table->string('apellidoPaterno');
             $table->string('apellidoMaterno');
+            $table->string('celular');
+            $table->string('red_fija');
+            $table->string('trabajo');
+            $table->string('recados');
             $table->string('email')->unique();
             $table->text('comentario');
             $table->timestamps();

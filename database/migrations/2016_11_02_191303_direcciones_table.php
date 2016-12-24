@@ -22,7 +22,9 @@ class DireccionesTable extends Migration
             $table->string('latitud');
             $table->string('longitud');
             $table->text('comentario');
-
+            $table->text('tipo_vivienda');
+            $table->text('sector');
+            $table->text('block');
             $table->integer('cliente_id')->unsigned();
             $table->integer('comuna_id')->unsigned();
 

@@ -17,7 +17,7 @@ class Direccion extends Model
     protected $table = 'direcciones';
 
 
-    protected $fillable = ['comuna_id','departamento','calle','telefono','numero','cliente_id','comentario','latitud','longitud'];
+    protected $fillable = ['comuna_id','departamento','calle','telefono','numero','cliente_id','comentario','latitud','longitud','tipo_vivienda','block','sector'];
 
 
     public static function updateData($response,$id_cliente){

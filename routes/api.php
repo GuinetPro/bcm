@@ -10,6 +10,8 @@ use App\Model\Cliente;
 use App\Model\Modelo;
 use App\Model\ProductoCliente;
 use App\Model\Taller;
+use App\Model\Tecnico;
+use App\Model\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,4 +149,28 @@ Route::get('/taller/{id}', function ($id) {
     $taller->comuna = Comuna::find($taller->comuna_id);
    
     return response()->json($taller);
+});
+
+
+Route::get('/user/{id}', function ($id) {
+    
+    $user = User::find($id); 
+
+    $tecnicos = Tecnico::where("user_id",$user->id)->get();
+
+    $user->talleresAsociados = $tecnicos;
+    return response()->json($user);
+
+});
+
+Route::delete('/tecnico/{id}', function ($id) {
+    
+    $tecnico = Tecnico::find($id); 
+
+    if( $tecnico->delete() ){
+       return response()->json(array("success" => "eliminada relacion"));
+    }else{
+       return response()->json(array("error" => "Error al eliminar relacion"));
+    }
+
 });

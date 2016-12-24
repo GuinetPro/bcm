@@ -7,7 +7,7 @@ use DB;
 
 class Cliente extends Model
 {	
-	protected $fillable = ['nombre','apellidoPaterno','apellidoMaterno','rut','email','comentario'];
+	protected $fillable = ['nombre','apellidoPaterno','apellidoMaterno','rut','email','comentario','celular','red_fija','trabajo','recados'];
 
 
 	/**
@@ -44,7 +44,7 @@ class Cliente extends Model
     public static function saveData($response){
 
     		
-    	$telefonos   = $response->tel;
+    	//$telefonos   = $response->tel;
 
     	$direcciones =  $response->dir;
 
@@ -58,7 +58,12 @@ class Cliente extends Model
 					'apellidoMaterno' => $response->apellidoMaterno,
 					'rut' => $response->rut,
 					'email' => $response->email,
-					'comentario' => $response->comentario
+					'comentario' => $response->comentario,
+					'celular' => $response->celular,
+					'red_fija' => $response->red_fija,
+					'trabajo' => $response->trabajo,
+					'recados' => $response->recados,
+					
 				]);
 
 			} catch(ValidationException $e)
@@ -72,7 +77,7 @@ class Cliente extends Model
 			    throw $e;
 			}
 
-			try {
+			/*try {
 				  
 				for ($i = 0; $i < sizeof($telefonos["numero"]); $i++) {
 
@@ -92,7 +97,7 @@ class Cliente extends Model
 			{
 			    DB::rollback();
 			    throw $e;
-			}
+			}*/
 
 			try {
 				  
@@ -103,13 +108,16 @@ class Cliente extends Model
 
 					        'comuna_id'     => $direcciones["comuna"][$x],
 					        'departamento'  => $direcciones["dpt"][$x],
-					        'calle' 	 => $direcciones["interior"][$x]." ".$direcciones["calle"][$x],
+					        'calle' 	 	=> $direcciones["interior"][$x]." ".$direcciones["calle"][$x],
 					        //'telefono'   => $direcciones["telefono"][$x],
-					        'numero' 	 => $direcciones["numero"][$x],
-					        'cliente_id' => $cliente->id,
+					        'numero' 	 	=> $direcciones["numero"][$x],
+					        'cliente_id' 	=> $cliente->id,
 					        //'comentario' => $direcciones["comentario"][$x],
-					        'latitud' 	 => $direcciones["latitud"][$x],
-							'longitud' 	 => $direcciones["longitud"][$x],
+					        'latitud' 	 	=> $direcciones["latitud"][$x],
+							'longitud' 	 	=> $direcciones["longitud"][$x],
+							'block' 		=> $direcciones["block"][$x],
+							'tipo_vivienda' => $direcciones["tipo_vivienda"][$x],
+							'sector' 	    => $direcciones["sector"][$x],
 					]);
 				}
 

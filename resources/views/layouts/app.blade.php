@@ -155,8 +155,7 @@
     <script src="{{ url('/libs/bower/moment/moment.js') }}"></script>
     <script src="{{ url('/libs/bower/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ url('/js/fullcalendar.js') }}"></script>
-
-
+    <script src="{{ url('/js/bootbox.min.js') }}"></script>
 
     <script src="{{ url('/js/angular.min.js') }}"></script>
 

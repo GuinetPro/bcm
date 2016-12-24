@@ -82,7 +82,7 @@
 
 
   <div class="form-group text-right">
-    <a href="{{url('/productos')}}"> Regresar al listado de Productos </a>
+    <a href="{{url('/bosh/productos')}}"> Regresar al listado de Productos </a>
     <input type="submit" value="Guardar" class="btn btn-success btn-lg">
   </div>
 

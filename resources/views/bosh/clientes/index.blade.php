@@ -7,8 +7,8 @@
         <h1>Clientes</h1> 
       </div>
       <div class="col-xs-6 col-md-4"> 
-          <a class='btn btn-info' href="{{url('/clientes/create')}}">Agregar cliente</a>
-          <a class='btn btn-success' href="{{url('/export/clientes')}}">Exportar a Excel</a>
+          <a class='btn btn-info' href="{{url('/bosh/clientes/create')}}">Agregar cliente</a>
+          <a class='btn btn-success' href="{{url('/bosh/export/clientes')}}">Exportar a Excel</a>
       </div>
 
     </div>
@@ -34,10 +34,10 @@
                 <td>{{ $c->email }}</td>
                 <td>{{ $c->created_at }}</td>
                 <td> 
-                  <a class="btn btn-warning" href="{{url('/clientes/'.$c->id.'/edit')}}">
+                  <a class="btn btn-warning" href="{{url('/bosh/clientes/'.$c->id.'/edit')}}">
                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar
                   </a>
-                  <a class="btn btn-info" href="{{url('/clientes/'.$c->id)}}">
+                  <a class="btn btn-info" href="{{url('/bosh/clientes/'.$c->id)}}">
                    <i class="fa fa-tasks" aria-hidden="true"></i>  Ficha
                   </a>
                

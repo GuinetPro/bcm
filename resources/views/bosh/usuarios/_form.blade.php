@@ -1,4 +1,5 @@
 {!! Form::open(['url' => $url, 'method' => $method , 'files' => true, 'enctype' => 'multipart/form-data' ]) !!}
+<input type="hidden" id="user_id" value="{{$user->id}}"/>
 <div class="row">
   <div class="col-md-6">
       <div class="widget stats-widget">
@@ -84,8 +85,9 @@
     <br/>
     <br/>
     <div class="list-group">
-        <span  class="list-group-item disabled" ng-repeat="t in talleres">
+        <span  class="list-group-item" ng-repeat="t in talleres">
         <% t.nombre %>
+        <span class="btn btn-danger pull-right" ng-click="eliminarTaller(t)"><i class="fa fa-times" aria-hidden="true"></i></span>
         <input type="hidden" name="asoc[id][]" value="<% t.id %>">
         </span>
     </div>

@@ -26,7 +26,7 @@ class ProductosController extends Controller
     {
          $productos = Producto::all();
     
-         return view("productos.index",["productos" => $productos]);
+         return view("bosh.productos.index",["productos" => $productos]);
     }
 
     /**
@@ -47,7 +47,7 @@ class ProductosController extends Controller
 
         
 
-        return view("productos.create",[
+        return view("bosh.productos.create",[
                                         "producto"      => $producto,
                                         "categoriaList" => $categorias,
                                         "marcaList"     => $marca,
@@ -107,9 +107,9 @@ class ProductosController extends Controller
 
         if($producto->save()){
             \Flash::success('Producto Creado con Exito.'); //<--FLASH MESSAGE
-            return redirect("productos");
+            return redirect("bosh/productos");
         }else{
-            return view("productos.create",["producto" => $producto]);
+            return view("bosh.productos.create",["producto" => $producto]);
         }
     }
 
@@ -142,7 +142,7 @@ class ProductosController extends Controller
 
         if( !$producto ){
              \Flash::error('El Productos que busca no existe.');
-            return redirect("/productos");
+            return redirect("/bosh/productos");
         }
 
 
@@ -155,7 +155,7 @@ class ProductosController extends Controller
         $marca      = Marca::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
         $tipoProductos = TipoProducto::pluck('nombre', 'id')->prepend('Selecciona una Marca','');
         
-        return view("productos.edit",[
+        return view("bosh.productos.edit",[
                                         "producto"      => $producto,
                                         "categoriaList" => $categorias,
                                         "marcaList"     => $marca,
@@ -214,10 +214,10 @@ class ProductosController extends Controller
 
             \Flash::success('Producto Editado con Exito.'); //<--FLASH MESSAGE
 
-            return redirect("productos");
+            return redirect("bosh/productos");
         
         }else{
-            return view("productos.edit",["producto" => $producto]);
+            return view("bosh.productos.edit",["producto" => $producto]);
         }
     }
 
