@@ -17,8 +17,8 @@ class TipoProductoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
 
-            $table->integer('categoria_id')->unsigned();
-            $table->foreign("categoria_id")->references("id")->on("categorias");
+            $table->integer('marca_id')->unsigned();
+            $table->foreign("marca_id")->references("id")->on("marcas");
 
 
             $table->timestamps();

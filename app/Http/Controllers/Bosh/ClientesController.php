@@ -80,7 +80,7 @@ class ClientesController extends Controller
 
         if( !$cliente ){
              \Flash::error('El Cliente que buscano existe.');
-            return redirect("/clientes");
+            return redirect("/bosh/clientes");
         }else{
             return view("bosh.clientes.show",["cliente" => $cliente,
                                          "categoriaList" => $categorias,
@@ -104,7 +104,7 @@ class ClientesController extends Controller
 
         if( !$cliente ){
              \Flash::error('El Cliente que busca no existe.');
-            return redirect("/clientes");
+            return redirect("/bosh/clientes");
         }else{
             return view("bosh.clientes.edit",["cliente" => $cliente]);
         }      
@@ -134,7 +134,7 @@ class ClientesController extends Controller
             Telefono::updateData($request,$id);
             Cliente::updateData($request,$id);
             \Flash::success('Cliente Editado con Exito.');
-            return redirect("/clientes");
+            return redirect("/bosh/clientes");
             
         }else{
             return view("bosh.clientes.edit",["cliente" => $cliente]);

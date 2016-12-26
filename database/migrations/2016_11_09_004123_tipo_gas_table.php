@@ -16,6 +16,10 @@ class TipoGasTable extends Migration
         Schema::create('tipo_gas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+
+
+            $table->integer('litraje_id')->unsigned();
+            $table->foreign("litraje_id")->references("id")->on("litrajes");
             $table->timestamps();
         });
     }

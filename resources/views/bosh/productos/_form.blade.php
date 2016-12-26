@@ -4,66 +4,85 @@
 {!! Form::open(['url' => $url, 'method' => $method , 'files' => true, 'enctype' => 'multipart/form-data' ]) !!}
 
   <div class="form-group">
-    <label for="nombre">Nombre</label>
-    {{ Form::text('nombre',$producto->nombre,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Nombre...'])  }}
+    <label for="modelo">Modelo</label>
+    {{ Form::text('modelo',$producto->modelo,['id' => 'modelo','class' => 'form-control', 'placeholder' => 'Modelo...'])  }}
   </div>
   
-
-  <div class="form-group">
-    <label for="nombre">Lugar Compra</label>
-    {{ Form::text('lugar_compra',$producto->lugar_compra,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Lugar compra...'])  }}
-  </div>
-   
-    <div class="form-group">
-    <label for="nombre">Fecha Compra</label>
-    {{ Form::text('fecha_compra',$producto->fecha_compra,['id' => 'nombre','class' => 'form-control', 'placeholder' => 'Fecha','data-plugin' =>"datetimepicker",'data-options'=>"{ }"])  }}
-  </div>
-  
-  <div class="form-group">
-    <label for="precio">Precio</label>
-    {{ Form::text('precio',$producto->precio,['id' => 'precio','class' => 'form-control', 'placeholder' => 'Precio...'])  }}
-  </div>
-
-  <div class="form-group">
-    <label for="nombre">Codigo</label>
-    {{ Form::text('codigo',$producto->codigo,['id' => 'codigo','class' => 'form-control', 'placeholder' => 'Codigo...'])  }}
-  </div>
-
   <div class="form-group">
     <label for="nombre">Categoria</label>
-  	{!! Form::select('categoria_id', $categoriaList, $producto->categoria_id, ['class' => 'form-control']) !!}
+    {!! Form::select('categoria_id', $categoriaList, $producto->categoria_id, ['class' => 'form-control']) !!}
   </div>
+
+  <div class="form-group">
+    <label for="nombre">Código del modelo</label>
+    {{ Form::text('codigo',$producto->codigo,['id' => 'codigo','class' => 'form-control', 'placeholder' => 'Codigo...'])  }}
+  </div>
+ 
+  <div class="form-group">
+    <label for="nombre">Marca</label>
+    {!! Form::select('marca_id', $marcaList, $producto->marca_id, ['id' => 'marca_id','class' => 'form-control','ng-model'  => 'marca' ,'ng-change'  => 'loadTipoProductos()','ng-init'  => "marca='". $producto->marca_id."'"
+    ]) !!}
+  </div>
+
 
 
   <div class="form-group">
     <label for="nombre">Tipo de Productos</label>
-    {!! Form::select('tipo_producto_id', $tipoProductos, $producto->tipo_producto_id, ['class' => 'form-control']) !!}
+    <select  ng-init="tipo_producto='{{$producto->tipo_producto_id}}'" ng-change="loadLitrajes()" id="tipo_producto_id" type="text" class="form-control" name="tipo_producto_id" ng-model="tipo_producto">
+        @if ($producto->id > 0)
+            <option value="{{$producto->tipo_producto_id}}">{{$producto->tipoproducto->nombre}}</option>
+        @endif
+        <option ng-repeat="t in tipoProductos" value="<% t.id %>"><% t.nombre %></option>
+    </select>
   </div>
 
-  <div class="form-group">
-    <label for="nombre">Marca</label>
-  	{!! Form::select('marca_id', $marcaList, $producto->marca_id, ['class' => 'form-control']) !!}
-  </div>
-
-  <div class="form-group">
-    <label for="nombre">Modelo</label>
-  	{!! Form::select('modelo_id', $modeloList, $producto->modelo_id, ['class' => 'form-control']) !!}
-  </div>
-
-  <div class="form-group">
-    <label for="nombre">Tipo Gas</label>
-  	{!! Form::select('tipo_gas_id', $tipo_gasList, $producto->tipo_gas_id, ['class' => 'form-control']) !!}
-  </div>
-
-  <div class="form-group">
-    <label for="nombre">Tiro</label>
-  	{!! Form::select('tiro_id', $tiroList, $producto->tiro_id, ['class' => 'form-control']) !!}
-  </div>
 
   <div class="form-group">
     <label for="nombre">Litraje</label>
-  	{!! Form::select('litraje_id', $litrajeList, $producto->litraje_id, ['class' => 'form-control']) !!}
+    <select  ng-init="litraje='{{$producto->litraje_id}}'" ng-change="loadTipoGas()" id="litraje_id" type="text" class="form-control" name="litraje_id" ng-model="litraje">
+        @if ($producto->id > 0)
+            <option value="{{$producto->litraje_id}}">{{$producto->litraje->lts}}</option>
+        @endif       
+        <option ng-repeat="l in litrajeList" value="<% l.id %>"><% l.lts %></option>
+    </select>
   </div>
+
+
+  <div class="form-group">
+    <label for="nombre">Tipo Gas</label>
+    <select  ng-init="tipo_gas='{{$producto->tipo_gas_id}}'" ng-change="loadTiro()" id="tipo_gas_id" type="text" class="form-control" name="tipo_gas_id" ng-model="tipo_gas">
+        @if ($producto->id > 0)
+            <option value="{{$producto->tipo_gas_id}}">{{$producto->tipoGas->nombre}}</option>
+        @endif 
+        <option ng-repeat="g in tipoGasList" value="<% g.id %>"><% g.nombre %></option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="nombre">Evacuación de gas</label>
+    <select  ng-init="tiro='{{$producto->tiro_id}}'"  id="tiro_id" type="text" class="form-control" name="tiro_id" ng-model="tiro">
+        @if ($producto->id > 0)
+            <option value="{{$producto->tiro_id}}">{{$producto->tiro->nombre}}</option>
+        @endif 
+        <option ng-repeat="t in tiroList" value="<% t.id %>"><% t.nombre %></option>
+    </select>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="nombre">Planta</label>
+    {!! Form::select('tipo_planta_id', $plantaList, $producto->tipo_planta_id, ['class' => 'form-control']) !!}
+  </div>
+
+
+  <div class="form-group">
+    <label for="nombre">Especificación</label>
+  	{!! Form::select('tipo_especificacion_id', $tipoEspecificacionList, $producto->tipo_especificacion_id, ['class' => 'form-control']) !!}
+  </div>
+
+
 
   <div class="form-group">
     <label for="nombre">Imagen</label>

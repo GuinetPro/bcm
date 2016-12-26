@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-	protected $fillable = ['nombre','precio','codigo','categoria_id','marca_id','modelo_id','tipo_gas_id','tiro_id','litraje_id','lugar_compra','fecha_compra'];
+	protected $fillable = ['nombre','precio','codigo','categoria_id','marca_id','modelo_id','tipo_gas_id','tiro_id','litraje_id','lugar_compra','fecha_compra','tipo_planta_id','tipo_especificacion_id'];
 
 
 	/**
@@ -29,19 +29,33 @@ class Producto extends Model
         return $this->belongsTo('App\Model\Modelo','modelo_id');
     }
 
+      public function planta()
+    {
+        return $this->belongsTo('App\Model\TipoPlanta','tipo_planta_id');
+    }
+
+      public function especificacion()
+    {
+        return $this->belongsTo('App\Model\TipoEspecificacion','tipo_especificacion_id');
+    }
+
+      public function tipoproducto()
+    {
+        return $this->belongsTo('App\Model\TipoProducto','tipo_producto_id');
+    }
       public function tipoGas()
     {
-        return $this->hasOne('App\Model\TipoGas');
+        return $this->belongsTo('App\Model\TipoGas','tipo_gas_id');
     }
 
       public function tiro()
     {
-        return $this->hasOne('App\Model\Tiro');
+        return $this->belongsTo('App\Model\Tiro','tiro_id');
     }
 
       public function litraje()
     {
-        return $this->hasOne('App\Model\Litraje');
+        return $this->belongsTo('App\Model\Litraje','litraje_id');
     }
 
 

@@ -13,6 +13,10 @@ use App\Model\Taller;
 use App\Model\Tecnico;
 use App\Model\User;
 
+use App\Model\TipoProducto;
+use App\Model\Litraje;
+use App\Model\TipoGas;
+use App\Model\Tiro;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -174,3 +178,27 @@ Route::delete('/tecnico/{id}', function ($id) {
     }
 
 });
+
+
+Route::get('/tipoproducto/{marca_id}', function ($marca_id) {
+    $tipoproductos = TipoProducto::where("marca_id",$marca_id)->get();
+    return response()->json($tipoproductos);
+});
+
+
+Route::get('/litraje/{tipo_producto_id}', function ($tipo_producto_id) {
+    $litrajes = Litraje::where("tipo_producto_id",$tipo_producto_id)->get();
+    return response()->json($litrajes);
+});
+
+Route::get('/tipogas/{litraje_id}', function ($litraje_id) {
+    $tipogas = TipoGas::where("litraje_id",$litraje_id)->get();
+    return response()->json($tipogas);
+});
+
+
+Route::get('/tiros/{tipo_gas_id}', function ($tipo_gas_id) {
+    $tiros = Tiro::where("tipo_gas_id",$tipo_gas_id)->get();
+    return response()->json($tiros);
+});
+

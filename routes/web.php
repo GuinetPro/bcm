@@ -43,6 +43,7 @@ use App\Model\Repuesto;
      Route::resource('clientes','Bosh\ClientesController');
      Route::resource('usuarios','Bosh\UsuariosController');
      Route::resource('productos','Bosh\ProductosController');
+     Route::resource('visitas','Bosh\VisitasController');
      Route::get('/','Bosh\HomeController@index');   
 
  });

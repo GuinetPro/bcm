@@ -29,26 +29,25 @@
 
 
   <div class="form-group">
-    <label for="celular">Telefono Celular</label>
-    {{ Form::tel('celular',$cliente->celular,['class' => 'form-control phone', 'placeholder' => 'Celular'])  }}
+    <div class="row">
+      <div class="col-md-3">
+          <label for="celular">Telefono Celular</label>
+          {{ Form::tel('celular',$cliente->celular,['class' => 'form-control phone', 'placeholder' => '09 7776543'])  }}     
+      </div>
+      <div class="col-md-3">
+            <label for="red_fija">Telefono Red Fija</label>
+            {{ Form::tel('red_fija',$cliente->red_fija,['class' => 'form-control phone', 'placeholder' => '09 7776543'])  }} 
+      </div>
+      <div class="col-md-3"> 
+            <label for="trabajo">Telefono Trabajo</label>
+            {{ Form::tel('trabajo',$cliente->trabajo,['class' => 'form-control phone', 'placeholder' => '09 7776543'])  }}
+      </div>
+      <div class="col-md-3"> 
+            <label for="recados">Telefono Recados</label>
+            {{ Form::tel('recados',$cliente->recados,['class' => 'form-control phone', 'placeholder' => '09 7776543'])  }}
+      </div>
+    </div>
   </div>
-
-
-  <div class="form-group">
-    <label for="red_fija">Telefono Red Fija</label>
-    {{ Form::tel('red_fija',$cliente->red_fija,['class' => 'form-control phone', 'placeholder' => 'Red Fija'])  }}
-  </div>
-
-  <div class="form-group">
-    <label for="trabajo">Telefono Trabajo</label>
-    {{ Form::tel('trabajo',$cliente->trabajo,['class' => 'form-control phone', 'placeholder' => 'trabajo'])  }}
-  </div>
- 
-  <div class="form-group">
-    <label for="recados">Telefono Recados</label>
-    {{ Form::tel('recados',$cliente->recados,['class' => 'form-control phone', 'placeholder' => 'trabajo'])  }}
-  </div>
- 
 
   <div class="form-group">
 

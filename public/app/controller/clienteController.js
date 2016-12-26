@@ -526,3 +526,42 @@ app.controller("UserCtrl",function($scope,$http,$timeout){
 
 
 });
+
+app.controller("ProductoCtrl",function($scope,$http,$timeout){
+
+	$scope.tipoProductos = [];
+	$scope.litrajeList   = [];
+	$scope.tipoGasList   = [];
+	$scope.tiroList      = [];
+
+	
+	$scope.loadTipoProductos = function(self){
+		$http.get(Base+'/tipoproducto/'+document.getElementById("marca_id").value)
+          .success(function (data) {
+            $scope.tipoProductos = data;
+     	});	
+	}
+ 
+ 	$scope.loadLitrajes = function(){
+		$http.get(Base+'/litraje/'+$scope.tipo_producto)
+          .success(function (data) {
+            $scope.litrajeList = data;
+     	});	
+	}
+
+ 	$scope.loadTipoGas = function(){
+		$http.get(Base+'/tipogas/'+$scope.litraje)
+          .success(function (data) {
+            $scope.tipoGasList = data;
+     	});	
+	}
+
+
+ 	$scope.loadTiro = function(){
+		$http.get(Base+'/tiros/'+$scope.tipo_gas)
+          .success(function (data) {
+            $scope.tiroList = data;
+     	});	
+	}
+
+});

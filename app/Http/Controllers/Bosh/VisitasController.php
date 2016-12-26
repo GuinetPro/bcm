@@ -27,7 +27,7 @@ class VisitasController extends Controller
     public function index()
     {   
           $visitas = Visita::all();
-         return view("visitas.index",["visitas" => $visitas]);
+         return view("bosh.visitas.index",["visitas" => $visitas]);
     }
 
     /**
@@ -56,7 +56,7 @@ class VisitasController extends Controller
         }
       
 
-        return view("visitas.create",["visita" => $visita,'cliente'=> $cliente,'tipoAtencion' =>$tipoAtencion, 'taller_dist' => $taller_dist, 'trabajo_re' => $trabajo_re,
+        return view("bosh.visitas.create",["visita" => $visita,'cliente'=> $cliente,'tipoAtencion' =>$tipoAtencion, 'taller_dist' => $taller_dist, 'trabajo_re' => $trabajo_re,
     'solicitantes' => $solicitantes,  'tipo_pre'=> $tipo_pre,  'nomina'  =>  $nomina,'talleres' =>  $talleres]);
     }
 
@@ -106,9 +106,9 @@ class VisitasController extends Controller
 
         if($visita->save()){
             \Flash::success('Visita Creada con Exito.'); //<--FLASH MESSAGE
-            return redirect("/clientes/".$request->cliente_id);
+            return redirect("/bosh/clientes/".$request->cliente_id);
         }else{
-            return view("visitas.create",["producto" => $visita]);
+            return view("bosh.visitas.create",["producto" => $visita]);
         }
 
     }
@@ -138,7 +138,7 @@ class VisitasController extends Controller
 
         if( !$visita ){
              \Flash::error('La Visita que busca no existe.');
-            return redirect("/clientes");
+            return redirect("/bosh/clientes");
         }else{
 
 
@@ -156,7 +156,7 @@ class VisitasController extends Controller
         $producto_cliente = ProductoCliente::find((int)$visita->producto_cliente_id);
 
 
-            return view("visitas.edit",["visita" => $visita,'cliente'=> $cliente,
+            return view("bosh.visitas.edit",["visita" => $visita,'cliente'=> $cliente,
                                         'tipoAtencion' =>$tipoAtencion, 
                                         'taller_dist' => $taller_dist, 
                                         'trabajo_re' => $trabajo_re,

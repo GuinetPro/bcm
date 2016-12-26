@@ -34,11 +34,18 @@ class ProductoRequest extends FormRequest
     {
         return [
             
-            'nombre'        => 'required|max:200',
-            'codigo'        => 'required|max:50',
-            'categoria_id'  => 'required',
-            'marca_id'      => 'required',
-            'modelo_id'     => 'required',
+            'modelo'                 => 'required|max:200',
+            'codigo'                 => 'required|max:50',
+            'categoria_id'           => 'required',
+            'marca_id'               => 'required',
+            'tipo_gas_id'            => 'required',
+            'tiro_id'                => 'required',
+            'litraje_id'             => 'required',
+            'tipo_producto_id'       => 'required',
+            'categoria_id'           => 'required',
+            'tipo_planta_id'         => 'required',
+            'tipo_especificacion_id' => 'required',
+
         ];
     }
 }
